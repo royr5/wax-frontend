@@ -1,12 +1,20 @@
-import { router } from "expo-router";
+import { router, Slot, Stack } from "expo-router";
 import { useEffect } from "react";
+
 
 const InitialLayout = () => {
   useEffect(() => {
-    router.replace
+    router.replace(`/(public)/`)
   }, []);
+
+  return <Slot />
 };
 
-export default () => {
-  return;
+
+const RootLayout = () => {
+  return (
+    <InitialLayout />
+  );
 };
+
+export default RootLayout
