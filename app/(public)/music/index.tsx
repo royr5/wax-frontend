@@ -22,6 +22,8 @@ const Albums = () => {
         {music.map((track: Music) => (
           <>
             <Link href={`/(public)/music/${track.album_id}`}>
+              <Image source={{uri: track.album_img}}
+              style={{width: 200, height: 200}}/>
               take me to the this specific album here {track.name}
             </Link>
           </>
