@@ -1,24 +1,32 @@
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import getMusic from "../../../utils/api";
+import { Music } from "../../../types/front-end";
 
 const Albums = () => {
+  const [music, setMusic] = useState<Music[]>([]);
   useEffect(() => {
     const doThis = async () => {
-      const music = await getMusic();
-      console.log(music);
+      const musicData = await getMusic();
+      setMusic(musicData);
     };
     doThis();
   }, []);
-
   return (
     <SafeAreaView>
       <Text>Music</Text>
-      <Link href="/(public)/music/1">
-        take me to the this specific album here [ ]
-      </Link>
+
+      <View>
+        {music.map((track: Music) => (
+          <>
+            <Link href={`/(public)/music/${track.album_id}`}>
+              take me to the this specific album here {track.name}
+            </Link>
+          </>
+        ))}
+      </View>
     </SafeAreaView>
   );
 };
