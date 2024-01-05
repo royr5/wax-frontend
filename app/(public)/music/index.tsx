@@ -19,7 +19,7 @@ const Albums = () => {
     <SafeAreaView>
       <ScrollView className="flex flex-col  bg-gray-300">
         {music.map((track: Music) => (
-          <View className="flex flex-col text-center items-center m-auto content-center bg-white p-10 m-10 rounded-lg">
+          <View className="flex flex-col text-center items-center m-auto content-center bg-white p-10 rounded-lg">
             <Link
               href={{
                 pathname: `/(public)/music/${track.music_id}`,
