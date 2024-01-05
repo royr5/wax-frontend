@@ -44,22 +44,3 @@ const Albums = () => {
 export default Albums
 
 
-/*  return (
-    <SafeAreaView>
-      <ScrollView className="flex flex-col  bg-gray-300">
-        {music.map((track: Music) => (
-          <View className="flex flex-col text-center items-center m-auto content-center bg-white p-10 m-10 rounded-lg">
-            <Link className="flex flex-row content-center " href={`/(public)/music/${track.album_id}`}>
-              <Image
-                className="w-40 h-40  justify-self-center self-center shadow-xl"
-                source={{ uri: track.album_img }}
-              />
-            </Link>
-            <Text className="text-center py-5" >{track.artist_names} </Text>
-              <Text className="text-center " >{track.name} </Text>
-          </View>
-        ))}
-      </ScrollView>
-    </SafeAreaView>
-  );
-};*/
