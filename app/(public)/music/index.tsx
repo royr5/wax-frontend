@@ -24,8 +24,8 @@ const Albums = () => {
           <>
             <Link
               href={{
-                pathname: `/(public)/music/${track.album_id}`,
-                params: { album_id: track.album_id },
+                pathname: `/(public)/music/${track.music_id}`,
+                params: { music_id: track.music_id },
               }}
             >
               <Image

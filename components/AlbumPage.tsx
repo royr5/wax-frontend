@@ -1,47 +1,40 @@
 import { Text, View, Image } from "react-native";
 import { Music } from "../types/front-end";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import getMusic from "../utils/api";
+import { useGlobalSearchParams } from "expo-router";
 
-interface Props {
-  album_id: string;
-}
 
-const AlbumPage: React.FC<Props> = ({ album_id }) => {
-  // useEffect(() => {
-  //     const doThis = async () => {
-  //       const musicData = await getMusic();
-  //       setMusic(musicData);
-  //     };
-  //     doThis();
-  //   }, []);
+const AlbumPage = () => {
+  const { music_id }= useGlobalSearchParams();
+  const [musicContent, setMusicContent] = useState<Music>();
 
-  const testObj = {
-    music_id: "1MVqeIAwhD4T44AKVkIfic",
-    artist_ids: ["4oLeXFyACqeem2VImYeBFe", "5SXuuuRpukkTvsLuUknva1"],
-    artist_names: ["Fred again..", "Baby Keem"],
-    name: "leavemealone",
-    type: "single",
-    tracks: null,
-    album_id: "3Tsut3cVOWP7AKAR4Dtmhb",
-    genres: null,
-    preview:
-      "https://p.scdn.co/mp3-preview/154e06b77aed19154a2b3e7dcfc9af91c74f4433?cid=114fce6830b84eb5868f3795b0847609",
-    album_img:
-      "https://i.scdn.co/image/ab67616d0000b273c9049966d5a1c1954ae98480",
-    release_date: "2023-12-08T00:00:00.000Z",
-  };
+  useEffect(() => {
+      const doThis = async () => {
+        const musicData = await getMusic(music_id as string);
+        setMusicContent(musicData);
+      };
+      doThis();
+    }, []);
+
 
   return (
-    <View className="bg-gray-500 flex justify-center items-center">
-      <Text className="text-center m-50">{testObj.name}</Text>
+    <View className="bg-gray-100 flex justify-center items-center">
+      <Text className="text-center m-50 text-xl font-bold">{musicContent?.name}</Text>
+      <Text>by</Text>
+        {musicContent?.artist_names.map((artistName)=>{
+        return <Text className="text-center m-50 text-xl m-1">{artistName}</Text>
+      })}
 
       <Image
-        source={{ uri: testObj.album_img }}
+        source={{ uri: musicContent?.album_img }}
         style={{
-          width: 200,
-          height: 200,
+          width: 400,
+          height: 400,
         }}
+
       />
+   
     </View>
   );
 };
