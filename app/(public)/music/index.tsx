@@ -14,6 +14,7 @@ const Albums = () => {
     };
     doThis();
   }, []);
+
   return (
     <SafeAreaView>
       <Text>Music</Text>
@@ -21,9 +22,16 @@ const Albums = () => {
       <View>
         {music.map((track: Music) => (
           <>
-            <Link href={`/(public)/music/${track.album_id}`}>
-              <Image source={{uri: track.album_img}}
-              style={{width: 200, height: 200}}/>
+            <Link
+              href={{
+                pathname: `/(public)/music/${track.album_id}`,
+                params: { album_id: track.album_id },
+              }}
+            >
+              <Image
+                source={{ uri: track.album_img }}
+                style={{ width: 200, height: 200 }}
+              />
               take me to the this specific album here {track.name}
             </Link>
           </>

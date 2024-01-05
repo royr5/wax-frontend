@@ -1,20 +1,20 @@
 import { router, Slot, Stack } from "expo-router";
 import { useEffect } from "react";
 
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({ default: "native" });
 
 const InitialLayout = () => {
   useEffect(() => {
-    router.replace(`/(public)/`)
+    router.replace(`/(public)/`);
   }, []);
 
-  return <Slot />
+  return <Slot />;
 };
-
 
 const RootLayout = () => {
-  return (
-    <InitialLayout />
-  );
+  return <InitialLayout />;
 };
 
-export default RootLayout
+export default RootLayout;
