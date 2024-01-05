@@ -10,6 +10,7 @@ export interface Music {
   preview: string;
   album_img: string;
   release_date: string;
+  avg_rating: "true" | null;
 }
 
 export interface Review {

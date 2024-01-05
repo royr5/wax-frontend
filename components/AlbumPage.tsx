@@ -10,7 +10,7 @@ const AlbumPage = () => {
 
   useEffect(() => {
     const doThis = async () => {
-      const musicData = await getMusic(music_id as string);
+      const musicData = await getMusic(music_id as string, "true");
       setMusicContent(musicData);
     };
     doThis();
@@ -35,6 +35,7 @@ const AlbumPage = () => {
           height: 400,
         }}
       />
+      <Text className="text-green-800">Rating: {musicContent?.avg_rating}</Text>
     </View>
   );
 };

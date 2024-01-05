@@ -6,12 +6,15 @@ const api = axios.create({ baseURL: "http://10.0.2.2:3000/api" });
 //IOS & WEB
 // const api = axios.create({ baseURL: "http://localhost:3000/api" });
 
-export const getMusic = async (music_id?: string) => {
+export const getMusic = async (
+  music_id?: string,
+  avg_rating?: "true" | null
+) => {
   try {
     const response: AxiosResponse = await api.get(
       "/music",
 
-      { params: { music_id } }
+      { params: { music_id, avg_rating } }
     );
 
     return response.data.music;
