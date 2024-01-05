@@ -11,3 +11,12 @@ export interface Music {
   album_img: string;
   release_date: string;
 }
+
+export interface Review {
+  music_id: number;
+  screen_name: number;
+  rating: number;
+  review_title: string | null;
+  review_body: string | null;
+  created_at?: string;
+}
