@@ -18,5 +18,3 @@ const getMusic = async (music_id?:string) => {
 
 
 export default getMusic;
-
-// {params: {album_id:album_id}}
