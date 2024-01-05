@@ -27,7 +27,7 @@ const Albums = () => {
               }}
             >
               <Image
-                className="w-40 h-40  justify-self-center self-center shadow-xl"
+                className="w-40 h-40  justify-self-center self-center"
                 source={{ uri: track.album_img }}
                 style={{ width: 200, height: 200 }}
               />
