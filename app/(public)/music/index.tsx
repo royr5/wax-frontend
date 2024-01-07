@@ -15,9 +15,12 @@ const Albums = () => {
     doThis();
   }, []);
 
-  // return (
+
   return (
     <SafeAreaView>
+      <View className="bg-white py-2 mt-4">
+        <Text className="text-center bold text-xl font-bold">GATEFOLD</Text>
+        </View>
       <ScrollView>
         <View className="flex flex-row flex-wrap justify-between">
           {music.map((track) => (
