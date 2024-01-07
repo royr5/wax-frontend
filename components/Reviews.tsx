@@ -18,15 +18,14 @@ export const Reviews = () => {
 
   return (
     <View>
-      <Text className="mt-10 text-center">REVIEWS</Text>
+      <Text className="mt-10 text-center font-bold text-lg">REVIEWS</Text>
       {reviews?.map((review: Review) => {
         return (
-          <View className="border-2 border-rose-500">
-            <Text>Name: {review.screen_name}</Text>
-            <Text>Rating: {review.rating}</Text>
-            <Text>Title: {review.review_title}</Text>
-            <Text>Body: {review.review_body}</Text>
-            <Text>Posted On: {review.created_at?.substring(0, 10)}</Text>
+          <View   key={Math.random()} className="my-2 mx-3 bg-slate-50 p-2 shadow">
+            <Text className="py-1 font-semibold ">{review.screen_name} : Rating: {review.rating}</Text>
+            <Text className="italic py-1">{review.review_title}</Text>
+            <Text className="mb-2">{review.review_body}</Text>
+            <Text className="text-xs">Posted On: {review.created_at?.substring(0, 10)}</Text>
           </View>
         );
       })}

@@ -22,6 +22,7 @@ const Albums = () => {
         <View className="flex flex-row flex-wrap justify-between">
           {music.map((track) => (
             <View
+            key={track.music_id}
               className="w-1/2 p-4 bg-white rounded-lg items-center"
             >
               <Link

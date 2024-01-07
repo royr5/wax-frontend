@@ -16,6 +16,7 @@ const AlbumPage = () => {
     doThis();
   }, []);
 
+
   return (
     <View className="bg-gray-100 flex justify-center items-center">
       <Text className="text-center m-50 text-xl font-bold">
@@ -24,7 +25,7 @@ const AlbumPage = () => {
       <Text>by</Text>
       {musicContent?.artist_names.map((artistName) => {
         return (
-          <Text className="text-center m-50 text-xl m-1">{artistName}</Text>
+          <Text   key={artistName} className="text-center m-50 text-xl m-1">{artistName}</Text>
         );
       })}
 
@@ -35,7 +36,7 @@ const AlbumPage = () => {
           height: 400,
         }}
       />
-      <Text className="text-green-800">Rating: {musicContent?.avg_rating}</Text>
+      <Text className="text-green-800 font-bold text-lg">Rating: {musicContent?.avg_rating}</Text>
     </View>
   );
 };
