@@ -1,14 +1,12 @@
-import { Link } from "expo-router"
-import { Button, Text, View } from "react-native"
+import { Text } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { ClicketyBoo } from "../../components/reusable-components/ClicketyBoo"
 
 const Welcome = () => {
     return (
-    <SafeAreaView>
-        <Text>Welcome to GateFold</Text>
-        <Link href="/(public)/music/">
-                take me to the music
-        </Link>
+    <SafeAreaView className="bg-white h-full">
+        <Text className="text-2xl">Welcome to The App Soon to be Known as The App Formerly Known as "Gatefold"</Text>
+        <ClicketyBoo target="/(public)/music/" logo="⏯️" text="log in"/>
     </SafeAreaView>
     )
 }
