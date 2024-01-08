@@ -36,11 +36,11 @@ const Welcome = () => {
         />
       </View>
       <View className="m-auto mt-8">
-      <ClicketyBoo
-        onPressFunction={() => router.replace("/music")}
-        logo="⏯️"
-        text="log in"
-      />
+        <ClicketyBoo
+          onPressFunction={() => router.replace("/(public)/music")}
+          logo="⏯️"
+          text="log in"
+        />
       </View>
     </SafeAreaView>
   );
