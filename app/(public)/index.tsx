@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ClicketyBoo } from "../../components/reusable-components/ClicketyBoo";
 import { FormFieldText } from "../../components/reusable-components/FormFieldText";
 import { useState } from "react";
+import { router } from "expo-router";
 
 const [username, setUsername] = React.useState("");
 const [password, setPassword] = React.useState("");
@@ -12,8 +13,7 @@ const Welcome = () => {
   return (
     <SafeAreaView className="bg-white h-full">
       <Text className="text-2xl">
-        Welcome to The App Soon to be Known as The App Formerly Known as
-        "Gatefold"
+        Welcome to Wax
       </Text>
       <FormFieldText
         label="Email"
@@ -32,7 +32,7 @@ const Welcome = () => {
         enterKeyHint="go"
       />
 
-      <ClicketyBoo target="/(public)/music/" logo="⏯️" text="log in" />
+      <ClicketyBoo onPressFunction={()=> router.replace('/music')} logo="⏯️" text="log in" />
     </SafeAreaView>
   );
 };
