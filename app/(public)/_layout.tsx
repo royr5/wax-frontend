@@ -7,7 +7,7 @@ export default () => {
                 {headerShown: true, title: "Gatefold"}
             } />
             <Stack.Screen name="music" options={
-                {headerShown: true, title: "MainFeed"}
+                {headerShown: false, title: "MainFeed"}
             } />
         </Stack>
      );

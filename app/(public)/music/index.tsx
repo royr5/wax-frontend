@@ -17,10 +17,16 @@ const Albums = () => {
 
   return (
     <SafeAreaView>
+      <View className="bg-white py-2 mt-4">
+        <Text className="text-center bold text-xl font-bold">GATEFOLD</Text>
+        </View>
       <ScrollView>
         <View className="flex flex-row flex-wrap justify-between">
           {music.map((track) => (
-            <View className="w-1/2 p-4 bg-white rounded-lg items-center">
+            <View
+            key={track.music_id}
+              className="w-1/2 p-4 bg-white rounded-lg items-center"
+            >
               <Link
                 href={{
                   pathname: `/(public)/music/${track.music_id}`,
