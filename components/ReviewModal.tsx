@@ -1,6 +1,9 @@
 import Slider from "@react-native-community/slider";
 import { useState } from "react";
 import { Alert, Modal, Text, Pressable, View, TextInput } from "react-native";
+import { postReview } from "../utils/api";
+import { useGlobalSearchParams } from "expo-router";
+import { useUserData } from "../app/contexts/UserContent";
 
 const ReviewModal = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -8,16 +11,24 @@ const ReviewModal = () => {
   const [body, setBody] = useState("");
   const [rating, setRating] = useState(0);
 
+  const { music_id } = useGlobalSearchParams();
+
+  const { user } = useUserData();
+
   const handleTitle = (input: string) => {
     setTitle(input);
   };
   const handleBody = (input: string) => {
     setBody(input);
   };
-  const handleRate = (input: number) => {};
-  
+
   const handleSubmit = () => {
-    // TODO add util function to post user
+    postReview(music_id as string, {
+      screen_name: user.username,
+      rating: rating,
+      review_title: title,
+      review_body: body,
+    });
   };
   const reviewScores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -53,17 +64,7 @@ const ReviewModal = () => {
               />
               <Text>{rating}</Text>
             </View>
-            {/* <View className="flex-row p-4 justify-center">
-              {reviewScores.map((num) => (
-                <Pressable
-                  key={num}
-                  onPress={() => handleRate(num)}
-                  className="mx-1 p-2 bg-orange-500 rounded-full "
-                >
-                  <Text className="w-3 text-center">{num}</Text>
-                </Pressable>
-              ))}
-            </View> */}
+
             <TextInput
               className="bg-white p-2 m-3 h-10 rounded-md"
               placeholder="title"
