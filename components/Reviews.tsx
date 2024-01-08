@@ -19,6 +19,7 @@ export const Reviews = () => {
   return (
     <View>
       <Text className="mt-10 text-center">REVIEWS</Text>
+
       {reviews?.map((review: Review) => {
         return (
           <View className="border-2 border-rose-500">

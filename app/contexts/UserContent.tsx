@@ -1,9 +1,19 @@
-import { ReactNode, createContext, useState } from "react";
-import { UserContextType } from "../../types/front-end";
+import { createContext, useContext, useState } from "react";
 
-export const UserContext = createContext<UserContextType | null>(null);
+interface UserContext {
+  user: { username: string };
+}
 
-export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<UserContextType>({ username: "Francesco" });
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+export const UserContext = createContext<UserContext>({} as UserContext);
+
+export const useUserData = () => {
+  return useContext(UserContext);
+};
+
+export const UserProvider = ({ children }: { children: any }) => {
+  const [user, setUser] = useState({ username: "Francesco" });
+
+  const value = { user };
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

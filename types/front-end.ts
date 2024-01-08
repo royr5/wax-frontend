@@ -22,6 +22,4 @@ export interface Review {
   created_at?: string;
 }
 
-export interface UserContextType {
-  username: string;
-}
+

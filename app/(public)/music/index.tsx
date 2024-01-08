@@ -15,15 +15,12 @@ const Albums = () => {
     doThis();
   }, []);
 
-  // return (
   return (
     <SafeAreaView>
       <ScrollView>
         <View className="flex flex-row flex-wrap justify-between">
           {music.map((track) => (
-            <View
-              className="w-1/2 p-4 bg-white rounded-lg items-center"
-            >
+            <View className="w-1/2 p-4 bg-white rounded-lg items-center">
               <Link
                 href={{
                   pathname: `/(public)/music/${track.music_id}`,
