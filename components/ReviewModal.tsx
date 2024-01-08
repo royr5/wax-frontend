@@ -4,8 +4,13 @@ import { Alert, Modal, Text, Pressable, View, TextInput } from "react-native";
 import { postReview } from "../utils/api";
 import { useGlobalSearchParams } from "expo-router";
 import { useUserData } from "../app/contexts/UserContent";
+import { Review } from "../types/front-end";
 
-const ReviewModal = () => {
+interface Iprops {
+  setReviews: Function;
+}
+
+const ReviewModal = (props: Iprops) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -22,14 +27,34 @@ const ReviewModal = () => {
     setBody(input);
   };
 
-  const handleSubmit = () => {
-    postReview(music_id as string, {
-      screen_name: user.username,
-      rating: rating,
-      review_title: title,
-      review_body: body,
-    });
+  const handleSubmit = async () => {
+    try {
+      const postedReview = await postReview(music_id as string, {
+        screen_name: user.username,
+        rating: rating,
+        review_title: title,
+        review_body: body,
+      });
+
+      setModalVisible(!modalVisible);
+
+      props.setReviews((currentReviews: Review[]) => {
+        return [
+          {
+            screen_name: user.username,
+            rating: rating,
+            review_title: title,
+            review_body: body,
+            created_at: new Date().toISOString(),
+          },
+          ...currentReviews,
+        ];
+      });
+    } catch (err) {
+      console.log("🚀 ~ file: ReviewModal.tsx:33 ~ handleSubmit ~ err:", err);
+    }
   };
+
   const reviewScores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
