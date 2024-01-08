@@ -1,6 +1,6 @@
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { useEffect, useState } from "react";
 import { getMusic } from "../../../utils/api";
 import { Music } from "../../../types/front-end";
@@ -17,30 +17,29 @@ const Albums = () => {
 
   return (
     <SafeAreaView>
-      <View className="bg-white py-2 mt-4">
-        <Text className="text-center bold text-xl font-bold">GATEFOLD</Text>
+       <View className="w-full h-24 justify-center items-center mt-8 bg-[#15BA46]">
+          <Image
+            source={require("../../../assets/images/Wax-logo-transparent.png")}
+            className="h-20"
+            resizeMode="center"
+          />
         </View>
       <ScrollView>
-        <View className="flex flex-row flex-wrap justify-between">
+        <View className="flex flex-row flex-wrap justify-between bg-white">
           {music.map((track) => (
+            <Pressable  key={track.music_id} onPress={() => router.push(`/(public)/music/${track.music_id}`)} className="w-1/2 h-auto">
             <View
             key={track.music_id}
-              className="w-1/2 p-4 bg-white rounded-lg items-center"
+              className=" p-4 bg-white rounded-lg items-center justify-center"
             >
-              <Link
-                href={{
-                  pathname: `/(public)/music/${track.music_id}`,
-                  params: { music_id: track.music_id },
-                }}
-              >
                 <Image
                   source={{ uri: track.album_img }}
-                  className="w-40 h-40  justify-self-center self-center rounded-lg"
+                  className="w-40 h-40  rounded-lg"
                 />
-              </Link>
               <Text className="text-center py-1">{track.artist_names}</Text>
               <Text className="text-center">{track.name}</Text>
             </View>
+            </Pressable>
           ))}
         </View>
       </ScrollView>
