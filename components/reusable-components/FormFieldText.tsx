@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { Text, TextInput, View } from "react-native";
 
 type autoComplete =
@@ -45,34 +45,33 @@ const numericKeyboards = [
   "tel",
 ];
 
-export const FormFieldText = ({
-  label,
-  text,
-  setText,
-  isRequired,
-  autoComplete,
-  enterKeyHint,
-  isMultiline,
-}: {
+interface Props {
   label: string;
-  text: string;
   setText: Function;
   isRequired?: boolean;
   autoComplete?: autoComplete;
   enterKeyHint?: "enter" | "done" | "next" | "search" | "go";
   isMultiline?: boolean;
+}
+
+export const FormFieldText: FC<Props> = ({
+  label,
+  setText,
+  isRequired,
+  autoComplete,
+  enterKeyHint,
+  isMultiline,
 }) => {
   const [newText, setNewText] = useState("");
 
-  if(!autoComplete) autoComplete = "off"
-
+  if (!autoComplete) autoComplete = "off";
 
   return (
     <View>
       <Text>{label}:</Text>
       <TextInput
-        onChangeText={(text) => setText(text)}
-        value={text}
+        onChangeText={(val) => setNewText(val)}
+        onBlur={setText(newText)}
         autoComplete={autoComplete}
         inputMode={
           autoComplete === "email"

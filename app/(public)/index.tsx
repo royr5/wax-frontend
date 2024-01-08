@@ -17,7 +17,6 @@ const Welcome = () => {
       </Text>
       <FormFieldText
         label="Email"
-        text={username}
         setText={setUsername}
         isRequired={true}
         autoComplete="email"
@@ -25,7 +24,6 @@ const Welcome = () => {
       />
       <FormFieldText
         label="Password"
-        text={password}
         setText={setPassword}
         isRequired={true}
         autoComplete="current-password"
