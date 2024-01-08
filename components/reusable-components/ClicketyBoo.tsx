@@ -2,24 +2,22 @@ import { Link } from "expo-router";
 import { Pressable, Text, View } from "react-native";
 
 export const ClicketyBoo = ({
-  target,
+  onPressFunction,
   logo,
   text,
 }: {
-  target: any;
+  onPressFunction: Function;
   logo: string;
   text: string;
 }) => {
   return (
     <View className="bg-black w-20">
-      <Link href={target}>
-        <Pressable>
+        <Pressable onPress={()=> {onPressFunction()}}>
           <Text className="text-white text-2xl">
             {text}
             {logo}
           </Text>
         </Pressable>
-      </Link>
     </View>
   );
 };
