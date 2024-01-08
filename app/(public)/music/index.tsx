@@ -15,7 +15,6 @@ const Albums = () => {
     doThis();
   }, []);
 
-
   return (
     <SafeAreaView>
       <View className="bg-white py-2 mt-4">

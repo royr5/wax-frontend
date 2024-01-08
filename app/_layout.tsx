@@ -2,6 +2,7 @@ import { router, Slot, Stack } from "expo-router";
 import { useEffect } from "react";
 
 import { NativeWindStyleSheet } from "nativewind";
+import { UserProvider } from "./contexts/UserContent";
 
 NativeWindStyleSheet.setOutput({ default: "native" });
 
@@ -14,7 +15,11 @@ const InitialLayout = () => {
 };
 
 const RootLayout = () => {
-  return <InitialLayout />;
+  return (
+    <UserProvider>
+      <InitialLayout />
+    </UserProvider>
+  );
 };
 
 export default RootLayout;
