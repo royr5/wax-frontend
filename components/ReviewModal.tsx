@@ -56,7 +56,7 @@ const ReviewModal = () => {
               onChangeText={handleTitle}
             />
             <TextInput
-              className="bg-white p-2 m-3 rounded-md min-h-full"
+              className="bg-white p-2 m-3 rounded-md min-h-fit"
               placeholder="body"
               placeholderTextColor={"#0008"}
               value={body}
