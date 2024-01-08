@@ -14,29 +14,30 @@ const Welcome = () => {
   return (
     <SafeAreaView className="bg-[#15BA46] h-full">
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View className="w-full h-1/5 justify-center items-center">
-        <Image
-          source={require("../../assets/images/Wax-logo-transparent.png")}
-          resizeMode="center"
-        />
-      </View>
-      <View className="mt-8 mb-0">
-        <FormFieldText
-          label="Email"
-          setText={setEmail}
-          isRequired={true}
-          autoComplete="email"
-          enterKeyHint="next"
-        />
+        <View className="w-full h-1/5 justify-center items-center">
+          <Image
+            source={require("../../assets/images/Wax-logo-transparent.png")}
+            resizeMode="center"
+          />
+        </View>
+        <View className="mt-8 mb-0">
+          <FormFieldText
+            label="Email"
+            setText={setEmail}
+            isRequired={true}
+            autoComplete="email"
+            enterKeyHint="next"
+          />
 
-        <FormFieldText
-          label="Password"
-          setText={setPassword}
-          isRequired={true}
-          autoComplete="current-password"
-          enterKeyHint="go"
-        />
-      </View>
+          <FormFieldText
+            label="Password"
+            setText={setPassword}
+            isRequired={true}
+            autoComplete="current-password"
+            enterKeyHint="go"
+          />
+        </View>
+      </TouchableWithoutFeedback>
       <View className="m-auto mt-8">
         <ClicketyBoo
           onPressFunction={() => router.replace("/(public)/music")}
@@ -44,7 +45,6 @@ const Welcome = () => {
           text="log in"
         />
       </View>
-      </TouchableWithoutFeedback>
     </SafeAreaView>
   );
 };
