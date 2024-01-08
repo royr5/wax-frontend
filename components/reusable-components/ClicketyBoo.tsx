@@ -11,13 +11,14 @@ export const ClicketyBoo = ({
   text: string;
 }) => {
   return (
-    <View className="bg-black w-20">
-        <Pressable onPress={()=> {onPressFunction()}}>
-          <Text className="text-white text-2xl">
-            {text}
-            {logo}
-          </Text>
-        </Pressable>
-    </View>
+    <Pressable
+      onPress={() => {
+        onPressFunction();
+      }}
+      className="bg-stone-200 w-40 m-5 p-2 flex-row rounded-sm"
+    >
+      <Text className="text-white text-2xl w-20 ">{text}</Text>
+      <Text className="text-white text-2xl ml-auto">{logo}</Text>
+    </Pressable>
   );
 };
