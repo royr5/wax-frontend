@@ -10,4 +10,14 @@ export interface Music {
   preview: string;
   album_img: string;
   release_date: string;
+  avg_rating: "true" | null;
+}
+
+export interface Review {
+  music_id: number;
+  screen_name: number;
+  rating: number;
+  review_title: string | null;
+  review_body: string | null;
+  created_at?: string;
 }

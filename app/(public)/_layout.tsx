@@ -4,10 +4,10 @@ export default () => {
     return ( 
         <Stack>
             <Stack.Screen name="index" options={
-                {headerShown: true }
+                {headerShown: true, title: "Gatefold"}
             } />
             <Stack.Screen name="music" options={
-                {headerShown: true  }
+                {headerShown: false, title: "MainFeed"}
             } />
         </Stack>
      );
