@@ -15,7 +15,7 @@ export const ClicketyBoo = ({
       onPress={() => {
         onPressFunction();
       }}
-      className="bg-stone-400 w-40 p-2 flex-row rounded-sm border-x border-b border-stone-500"
+      className="bg-black w-40 p-2 flex-row rounded border-x border-b border-stone-500"
     >
       <Text className="text-white text-2xl w-20 ">{text}</Text>
       <Text className="text-white text-2xl ml-auto">{logo}</Text>

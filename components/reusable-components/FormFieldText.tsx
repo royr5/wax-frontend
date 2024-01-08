@@ -68,7 +68,7 @@ export const FormFieldText: FC<Props> = ({
 
   return (
     <View>
-      <Text className="text-2xl">{label}:</Text>
+      <Text className="text-2xl mx-5">{label}:</Text>
       <TextInput
         onChangeText={(val) => setNewText(val)}
         onBlur={setText(newText)}
@@ -83,7 +83,7 @@ export const FormFieldText: FC<Props> = ({
         secureTextEntry={autoComplete.endsWith("password")}
         enterKeyHint={enterKeyHint || "enter"}
         multiline={isMultiline || false}
-        className="bg-white p-2 m-5"
+        className="bg-white p-2 m-5 rounded"
       />
     </View>
   );

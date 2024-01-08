@@ -13,11 +13,12 @@ const Welcome = () => {
   return (
     <SafeAreaView className="bg-[#15BA46] h-full">
       <View className="w-full h-1/5 justify-center items-center">
-      <Image source={require("../../assets/images/Wax-logo-transparent.png")} 
-      resizeMode="center"
-    />
+        <Image
+          source={require("../../assets/images/Wax-logo-transparent.png")}
+          resizeMode="center"
+        />
       </View>
-      <View>
+      <View className="mt-8 mb-0">
         <FormFieldText
           label="Email"
           setText={setUsername}
@@ -25,20 +26,22 @@ const Welcome = () => {
           autoComplete="email"
           enterKeyHint="next"
         />
-      </View>
-      <FormFieldText
-        label="Password"
-        setText={setPassword}
-        isRequired={true}
-        autoComplete="current-password"
-        enterKeyHint="go"
-      />
 
+        <FormFieldText
+          label="Password"
+          setText={setPassword}
+          isRequired={true}
+          autoComplete="current-password"
+          enterKeyHint="go"
+        />
+      </View>
+      <View className="m-auto mt-8">
       <ClicketyBoo
         onPressFunction={() => router.replace("/music")}
         logo="⏯️"
         text="log in"
       />
+      </View>
     </SafeAreaView>
   );
 };
