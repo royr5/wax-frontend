@@ -11,10 +11,13 @@ export const ClicketyBoo = ({
   text: string;
 }) => {
   return (
-    <View className="bg-black w-20" >
+    <View className="bg-black w-20">
       <Link href={target}>
         <Pressable>
-          <Text className="text-white text-2xl">{text}{logo}</Text>
+          <Text className="text-white text-2xl">
+            {text}
+            {logo}
+          </Text>
         </Pressable>
       </Link>
     </View>
