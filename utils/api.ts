@@ -11,11 +11,13 @@ export const getMusic = async (
   avg_rating?: "true" | null
 ) => {
   try {
+
     const response: AxiosResponse = await api.get(
       "/music",
 
       { params: { music_id, avg_rating } }
     );
+
 
     return response.data.music;
   } catch (err) {
