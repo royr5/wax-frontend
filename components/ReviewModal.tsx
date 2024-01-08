@@ -1,3 +1,4 @@
+import Slider from "@react-native-community/slider";
 import React, { useState } from "react";
 import {
   Alert,
@@ -14,7 +15,6 @@ const ReviewModal = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [rating, setRating] = useState(0);
-  
 
   const handleTitle = (input: string) => {
     setTitle(input);
@@ -22,12 +22,10 @@ const ReviewModal = () => {
   const handleBody = (input: string) => {
     setBody(input);
   };
-  const handleRate = (input: number) => {
-    setRating(input);
+  const handleRate = (input: number) => {};
+  const handleSubmit = () => {
+    // TODO add util function to post user
   };
-const handleSubmit =()=>{
-// TODO add util function to post user
-}
   const reviewScores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
@@ -41,12 +39,28 @@ const handleSubmit =()=>{
           setModalVisible(!modalVisible);
         }}
       >
-        <View className="w-[90%] h-[60%] mx-auto bg-slate-300 absolute inset-x-0 bottom-0 rounded-t-[1rem] p-2 shadow-2xl">
+        <View className="w-[90%] h-[60%] mx-auto  bg-slate-300 absolute inset-x-0 bottom-0 rounded-t-[1rem] p-5 shadow-2xl ">
           <View>
-            <Pressable onPress={() => setModalVisible(!modalVisible)}>
+            <Pressable
+              className="justify-self-end ml-[96%]"
+              onPress={() => setModalVisible(!modalVisible)}
+            >
               <Text className="text-right">❌</Text>
             </Pressable>
-            <View className="flex-row p-4 justify-center">
+
+            <View>
+              <Slider
+                minimumValue={0}
+                maximumValue={10}
+                minimumTrackTintColor="#16b946"
+                maximumTrackTintColor="#000000"
+                onValueChange={setRating}
+                className="h-10 my-2"
+                step={1}
+              />
+              <Text>{rating}</Text>
+            </View>
+            {/* <View className="flex-row p-4 justify-center">
               {reviewScores.map((num) => (
                 <Pressable
                   key={num}
@@ -56,7 +70,7 @@ const handleSubmit =()=>{
                   <Text className="w-3 text-center">{num}</Text>
                 </Pressable>
               ))}
-            </View>
+            </View> */}
             <TextInput
               className="bg-white p-2 m-3 h-10 rounded-md"
               placeholder="title"
@@ -72,9 +86,10 @@ const handleSubmit =()=>{
               onChangeText={handleBody}
               multiline={true}
             />
-            <Pressable 
-            onPress={handleSubmit}
-            className="bg-red-200 w-40 p-6 rounded-[1rem] mx-auto">
+            <Pressable
+              onPress={handleSubmit}
+              className="bg-red-200 w-40 p-6 rounded-[1rem] mx-auto"
+            >
               <Text className="text-center">submit</Text>
             </Pressable>
           </View>
