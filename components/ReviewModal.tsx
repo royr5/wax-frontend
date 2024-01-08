@@ -1,3 +1,4 @@
+import Slider from "@react-native-community/slider";
 import { useState } from "react";
 import { Alert, Modal, Text, Pressable, View, TextInput } from "react-native";
 
@@ -13,9 +14,8 @@ const ReviewModal = () => {
   const handleBody = (input: string) => {
     setBody(input);
   };
-  const handleRate = (input: number) => {
-    setRating(input);
-  };
+  const handleRate = (input: number) => {};
+  
   const handleSubmit = () => {
     // TODO add util function to post user
   };
@@ -34,10 +34,26 @@ const ReviewModal = () => {
       >
         <View className="w-[90%] mx-[5%] h-[60%] bg-slate-300 absolute inset-x-0 bottom-0 rounded-t-xl p-2 shadow-2xl">
           <View>
-            <Pressable onPress={() => setModalVisible(!modalVisible)}>
+            <Pressable
+              className="justify-self-end ml-[96%]"
+              onPress={() => setModalVisible(!modalVisible)}
+            >
               <Text className="text-right">❌</Text>
             </Pressable>
-            <View className="flex-row p-4 justify-center">
+
+            <View>
+              <Slider
+                minimumValue={0}
+                maximumValue={10}
+                minimumTrackTintColor="#16b946"
+                maximumTrackTintColor="#000000"
+                onValueChange={setRating}
+                className="h-10 my-2"
+                step={1}
+              />
+              <Text>{rating}</Text>
+            </View>
+            {/* <View className="flex-row p-4 justify-center">
               {reviewScores.map((num) => (
                 <Pressable
                   key={num}
@@ -47,7 +63,7 @@ const ReviewModal = () => {
                   <Text className="w-3 text-center">{num}</Text>
                 </Pressable>
               ))}
-            </View>
+            </View> */}
             <TextInput
               className="bg-white p-2 m-3 h-10 rounded-md"
               placeholder="title"
