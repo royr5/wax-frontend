@@ -71,7 +71,7 @@ export const FormFieldText: FC<Props> = ({
       <Text className="text-2xl mx-5">{label}:</Text>
       <TextInput
         onChangeText={(val) => setNewText(val)}
-        onBlur={setText(newText)}
+        onBlur={() => setText(newText)}
         autoComplete={autoComplete}
         inputMode={
           autoComplete === "email"
