@@ -1,14 +1,6 @@
 import Slider from "@react-native-community/slider";
-import React, { useState } from "react";
-import {
-  Alert,
-  Modal,
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-  TextInput,
-} from "react-native";
+import { useState } from "react";
+import { Alert, Modal, Text, Pressable, View, TextInput } from "react-native";
 
 const ReviewModal = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -23,6 +15,7 @@ const ReviewModal = () => {
     setBody(input);
   };
   const handleRate = (input: number) => {};
+  
   const handleSubmit = () => {
     // TODO add util function to post user
   };
@@ -39,7 +32,7 @@ const ReviewModal = () => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View className="w-[90%] h-[60%] mx-auto  bg-slate-300 absolute inset-x-0 bottom-0 rounded-t-[1rem] p-5 shadow-2xl ">
+        <View className="w-[90%] mx-[5%] h-[60%] bg-slate-300 absolute inset-x-0 bottom-0 rounded-t-xl p-2 shadow-2xl">
           <View>
             <Pressable
               className="justify-self-end ml-[96%]"
@@ -88,7 +81,7 @@ const ReviewModal = () => {
             />
             <Pressable
               onPress={handleSubmit}
-              className="bg-red-200 w-40 p-6 rounded-[1rem] mx-auto"
+              className="bg-red-200 w-40 p-6 rounded-md mx-auto"
             >
               <Text className="text-center">submit</Text>
             </Pressable>
@@ -96,7 +89,7 @@ const ReviewModal = () => {
         </View>
       </Modal>
       <Pressable
-        className="bg-red-200 w-40 p-6 rounded-[1rem] mx-auto"
+        className="bg-red-200 w-40 p-6 rounded-md mx-auto"
         onPress={() => setModalVisible(true)}
       >
         <Text className="text-center">Show Modal</Text>
