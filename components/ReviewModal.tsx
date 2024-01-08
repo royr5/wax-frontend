@@ -1,20 +1,11 @@
-import React, { useState } from "react";
-import {
-  Alert,
-  Modal,
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-  TextInput,
-} from "react-native";
+import { useState } from "react";
+import { Alert, Modal, Text, Pressable, View, TextInput } from "react-native";
 
 const ReviewModal = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [rating, setRating] = useState(0);
-  
 
   const handleTitle = (input: string) => {
     setTitle(input);
@@ -25,9 +16,9 @@ const ReviewModal = () => {
   const handleRate = (input: number) => {
     setRating(input);
   };
-const handleSubmit =()=>{
-// TODO add util function to post user
-}
+  const handleSubmit = () => {
+    // TODO add util function to post user
+  };
   const reviewScores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
@@ -41,7 +32,7 @@ const handleSubmit =()=>{
           setModalVisible(!modalVisible);
         }}
       >
-        <View className="w-[90%] h-[60%] mx-auto bg-slate-300 absolute inset-x-0 bottom-0 rounded-t-[1rem] p-2 shadow-2xl">
+        <View className="w-[90%] mx-[5%] h-[60%] bg-slate-300 absolute inset-x-0 bottom-0 rounded-t-xl p-2 shadow-2xl">
           <View>
             <Pressable onPress={() => setModalVisible(!modalVisible)}>
               <Text className="text-right">❌</Text>
@@ -72,16 +63,17 @@ const handleSubmit =()=>{
               onChangeText={handleBody}
               multiline={true}
             />
-            <Pressable 
-            onPress={handleSubmit}
-            className="bg-red-200 w-40 p-6 rounded-[1rem] mx-auto">
+            <Pressable
+              onPress={handleSubmit}
+              className="bg-red-200 w-40 p-6 rounded-md mx-auto"
+            >
               <Text className="text-center">submit</Text>
             </Pressable>
           </View>
         </View>
       </Modal>
       <Pressable
-        className="bg-red-200 w-40 p-6 rounded-[1rem] mx-auto"
+        className="bg-red-200 w-40 p-6 rounded-md mx-auto"
         onPress={() => setModalVisible(true)}
       >
         <Text className="text-center">Show Modal</Text>
