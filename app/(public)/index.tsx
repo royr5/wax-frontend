@@ -12,8 +12,10 @@ const [password, setPassword] = useState("");
 const Welcome = () => {
   return (
     <SafeAreaView className="bg-[#15BA46] h-full">
-      <View className="w-full h-1/5 flex justify-center items-center px-10">
-      <Image source={require("../../assets/images/Wax-logo-transparent.png")} className="flex w-full h-full"/>
+      <View className="w-full h-1/5 justify-center items-center">
+      <Image source={require("../../assets/images/Wax-logo-transparent.png")} 
+      resizeMode="center"
+    />
       </View>
       <View>
         <FormFieldText
