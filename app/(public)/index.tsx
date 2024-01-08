@@ -1,17 +1,19 @@
 import React from "react";
-import { Image, View } from "react-native";
+import { Image, Keyboard, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ClicketyBoo } from "../../components/reusable-components/ClicketyBoo";
 import { FormFieldText } from "../../components/reusable-components/FormFieldText";
 import { useState } from "react";
 import { router } from "expo-router";
-
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const Welcome = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <SafeAreaView className="bg-[#15BA46] h-full">
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View className="w-full h-1/5 justify-center items-center">
         <Image
           source={require("../../assets/images/Wax-logo-transparent.png")}
@@ -21,7 +23,7 @@ const Welcome = () => {
       <View className="mt-8 mb-0">
         <FormFieldText
           label="Email"
-          setText={setUsername}
+          setText={setEmail}
           isRequired={true}
           autoComplete="email"
           enterKeyHint="next"
@@ -42,6 +44,7 @@ const Welcome = () => {
           text="log in"
         />
       </View>
+      </TouchableWithoutFeedback>
     </SafeAreaView>
   );
 };
