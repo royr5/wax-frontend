@@ -32,7 +32,7 @@ const ReviewModal = (props: Iprops) => {
     if (rating) {
       try {
         const postedReview = await postReview(music_id as string, {
-          screen_name: user.username,
+          username: user.username,
           rating: rating,
           review_title: title,
           review_body: body,
@@ -44,7 +44,7 @@ const ReviewModal = (props: Iprops) => {
         props.setReviews((currentReviews: Review[]) => {
           return [
             {
-              screen_name: user.username,
+              username: user.username,
               rating: rating,
               review_title: title,
               review_body: body,
@@ -65,7 +65,6 @@ const ReviewModal = (props: Iprops) => {
     }
   };
 
-  const reviewScores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <View>
