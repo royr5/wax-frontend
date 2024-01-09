@@ -29,7 +29,7 @@ const ReviewModal = (props: Iprops) => {
   };
 
   const handleSubmit = async () => {
-    if (title && body && rating) {
+    if (rating) {
       try {
         const postedReview = await postReview(music_id as string, {
           screen_name: user.username,
@@ -57,14 +57,11 @@ const ReviewModal = (props: Iprops) => {
         console.log("🚀 ~ file: ReviewModal.tsx:33 ~ handleSubmit ~ err:", err);
       }
     } else {
-      let errorMessage = "Please fill in the following:";
-      if (!rating) errorMessage += "\n- Rating";
-      if (!title) errorMessage += "\n- Title";
-      if (!body) errorMessage += "\n- Body";
-
-      Alert.alert("Incomplete Review", errorMessage, [
-        { text: "OK", onPress: () => console.log("close") },
-      ]);
+      Alert.alert(
+        "Incomplete Review",
+        "Please rate the music before submitting a review.",
+        [{ text: "OK", onPress: () => console.log("close") }]
+      );
     }
   };
 
@@ -104,7 +101,9 @@ const ReviewModal = (props: Iprops) => {
                 step={1}
                 value={rating}
               />
-              <Text>{rating}</Text>
+              <Text>
+                {rating} <Text className="text-red-500">*</Text>
+              </Text>
             </View>
 
             <TextInput
