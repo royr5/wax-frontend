@@ -19,6 +19,9 @@ interface Props {
 const SearchDropDown: FC<Props> = ({ dropDVis, setDropDVis }) => {
   const [searchText, setSearchText] = useState("");
   const [searchVis, setSearchVis] = useState(false);
+  const [typeOfSearch, setTypeOfSearch] = useState("");
+  const [isPressedIn1 , setIsPressedIn1] = useState(false)
+  const [isPressedIn2 , setIsPressedIn2] = useState(false)
 
   const handleSearchSubmit = () => {
     if (searchText) {
@@ -39,34 +42,45 @@ const SearchDropDown: FC<Props> = ({ dropDVis, setDropDVis }) => {
           setDropDVis(!dropDVis);
         }}
       >
-        <View className="bg-white mt-[28%] pl-4 pb-4 justify-start items-start">
+        <View className="bg-white mt-[29%] pl-4 pb-4 justify-start items-start">
           <Pressable
-            onPress={() => {
-              setSearchVis(!searchVis);
+            onPressIn={() => {
+              setSearchVis(true);
+              setTypeOfSearch("Albums");
+              setIsPressedIn1(true);
             }}
+            onPressOut={() => {
+                setIsPressedIn1(false);
+            }}
+            className={isPressedIn1 ? 'bg-gray-500' : 'bg-white'}
           >
             <Text className="py-2 pl-4 pr-8 border-b">Albums</Text>
           </Pressable>
           <Pressable
-            onPress={() => {
-              setSearchVis(!searchVis);
+            onPressIn={() => {
+              setSearchVis(true);
+              setTypeOfSearch("Tracks");
+              setIsPressedIn2(true);
             }}
+            onPressOut={() => {
+              setIsPressedIn2(false);
+            }}
+            className={isPressedIn2 ? 'bg-gray-500' : 'bg-white'}
           >
             <Text className="py-2 pl-4 pr-8 border-b">Tracks</Text>
           </Pressable>
         </View>
       </Pressable>
       {searchVis && (
-        <Modal visible={searchVis} animationType="fade" transparent={true}>
-          <Pressable
-            onPress={() => {
-              setSearchVis(!searchVis);
-            }}
-          >
-          <View className=" mt-[48%] bg-white flex flex-row items-center justify-items-center">
+        <Pressable
+          onPress={() => {
+            setSearchVis(!searchVis);
+          }}
+        >
+          <View className=" bg-white flex flex-row items-center justify-items-center">
             <TextInput
-              className="border-2 focus:border-green-600 m-5 p-3 rounded w-[75%]"
-              placeholder="Search"
+              className="border-2 m-5 p-3 rounded w-[75%]"
+              placeholder={typeOfSearch}
               value={searchText}
               onChangeText={setSearchText}
             />
@@ -79,8 +93,7 @@ const SearchDropDown: FC<Props> = ({ dropDVis, setDropDVis }) => {
               </Text>
             </Pressable>
           </View>
-          </Pressable>
-        </Modal>
+        </Pressable>
       )}
     </Modal>
   );
