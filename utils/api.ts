@@ -1,4 +1,6 @@
 import axios, { AxiosResponse } from "axios";
+import { PostReview } from "../types/front-end";
+
 
 const api = axios.create({
   baseURL: "https://8se83n1ku9.execute-api.eu-west-2.amazonaws.com/prod/api",
@@ -28,5 +30,18 @@ export const getReviews = async (music_id?: string) => {
     return response.data.reviews;
   } catch (err) {
     console.log("🚀 ~ file: api.ts:24 ~ getReviews ~ err:", err);
+  }
+};
+
+export const postReview = async (music_id: string, review: PostReview) => {
+  try {
+    const response: AxiosResponse = await api.post(
+      `/reviews/${music_id}`,
+      review
+    );
+
+    return response.data.review;
+  } catch (err) {
+    console.log("🚀 ~ file: api.ts:40 ~ postReview ~ err:", err);
   }
 };

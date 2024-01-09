@@ -1,6 +1,5 @@
-import { Text, View, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, useGlobalSearchParams, useLocalSearchParams } from "expo-router";
 import AlbumPage from "../../../../components/AlbumPage";
 import { Reviews } from "../../../../components/Reviews";
 
