@@ -20,7 +20,7 @@ const Albums = () => {
        <View className="w-full h-24 justify-center items-center mt-8 bg-[#15BA46]">
           <Image
             source={require("../../../assets/images/Wax-logo-transparent.png")}
-            className="h-16"
+            className="h-full m-2"
             resizeMode="center"
           />
         </View>
