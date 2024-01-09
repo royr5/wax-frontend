@@ -19,7 +19,7 @@ export const Reviews = () => {
 
   return (
     <>
-      <ReviewModal />
+      <ReviewModal setReviews={setReviews} />
       <View>
         <Text className="mt-10 text-center font-bold text-lg">REVIEWS</Text>
         {reviews?.map((review: Review) => {

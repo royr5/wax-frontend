@@ -11,7 +11,7 @@ export const useUserData = () => {
 };
 
 export const UserProvider = ({ children }: { children: any }) => {
-  const [user, setUser] = useState({ username: "Francesco" });
+  const [user, setUser] = useState({ username: "night_owl_philosopher" });
 
   const value = { user };
 

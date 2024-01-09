@@ -22,4 +22,9 @@ export interface Review {
   created_at?: string;
 }
 
-
+export interface PostReview {
+  screen_name: string;
+  rating: number;
+  review_title: string | null;
+  review_body: string | null;
+}
