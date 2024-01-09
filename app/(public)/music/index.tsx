@@ -5,9 +5,12 @@ import { useEffect, useState } from "react";
 import { getMusic } from "../../../utils/api";
 import { Music } from "../../../types/front-end";
 import SearchDropDown from "../../../components/SearchDropDown";
+import { Ionicons } from "@expo/vector-icons";
 
 const Albums = () => {
+  const [buttonColor, setButtonColor] = useState("bg-[#15BA46]");
   const [music, setMusic] = useState<Music[]>([]);
+  const [dropDVis, setDropDVis] = useState(false)
   useEffect(() => {
     const doThis = async () => {
       const musicData = await getMusic();
@@ -16,17 +19,35 @@ const Albums = () => {
     doThis();
   }, []);
 
+
+
   return (
     <SafeAreaView>
-      <View className="w-full h-24 justify-center items-center mt-8 bg-[#15BA46]">
+      <View className="w-full h-24 flex-row items-center justify-start mt-8 bg-[#15BA46]">
+        <Pressable
+          className={`items-center mx-6 p-2 ${buttonColor} rounded-sm`}
+          onPressIn={() => {
+            setButtonColor("bg-green-900");
+            setDropDVis(!dropDVis!)
+          }}
+          onPressOut={() => {
+            setButtonColor("bg-[#15BA46]");
+          }}
+        >
+          <Ionicons
+            name="search-outline"
+            size={30}
+            color="black"
+            className="m-4"
+          />
+        </Pressable>
         <Image
           source={require("../../../assets/images/Wax-logo-transparent.png")}
-          className="h-full"
+          className="h-full w-[50%]"
           resizeMode="center"
         />
       </View>
-      <SearchDropDown />
-
+          {dropDVis && <SearchDropDown />}
       <ScrollView>
         <View className="flex flex-row flex-wrap justify-between bg-white">
           {music.map((track) => (
