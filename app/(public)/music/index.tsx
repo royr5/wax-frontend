@@ -1,4 +1,11 @@
-import { Image, Pressable, ScrollView, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
@@ -10,7 +17,7 @@ import { Ionicons } from "@expo/vector-icons";
 const Albums = () => {
   const [buttonColor, setButtonColor] = useState("bg-[#15BA46]");
   const [music, setMusic] = useState<Music[]>([]);
-  const [dropDVis, setDropDVis] = useState(false)
+  const [dropDVis, setDropDVis] = useState(false);
   useEffect(() => {
     const doThis = async () => {
       const musicData = await getMusic();
@@ -19,16 +26,14 @@ const Albums = () => {
     doThis();
   }, []);
 
-
-
   return (
     <SafeAreaView>
-      <View className="w-full h-24 flex-row items-center justify-start mt-8 bg-[#15BA46]">
+      <View className="w-full h-[9%] flex-row items-center justify-start mt-8 bg-[#15BA46]">
         <Pressable
           className={`items-center mx-6 p-2 ${buttonColor} rounded-sm`}
           onPressIn={() => {
             setButtonColor("bg-green-900");
-            setDropDVis(!dropDVis!)
+            setDropDVis(!dropDVis);
           }}
           onPressOut={() => {
             setButtonColor("bg-[#15BA46]");
@@ -47,7 +52,9 @@ const Albums = () => {
           resizeMode="center"
         />
       </View>
-          {dropDVis && <SearchDropDown />}
+      {dropDVis && (
+        <SearchDropDown dropDVis={dropDVis} setDropDVis={setDropDVis} />
+      )}
       <ScrollView>
         <View className="flex flex-row flex-wrap justify-between bg-white">
           {music.map((track) => (
