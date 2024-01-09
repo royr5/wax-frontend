@@ -14,7 +14,7 @@ const Welcome = () => {
   return (
     <SafeAreaView className="bg-[#15BA46] h-full">
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View className="w-full h-1/5 justify-center items-center">
+        <View className="w-full h-1/4 justify-center items-center mt-14">
           <Image
             source={require("../../assets/images/Wax-logo-transparent.png")}
             resizeMode="center"
@@ -38,7 +38,7 @@ const Welcome = () => {
           />
         </View>
       </TouchableWithoutFeedback>
-      <View className="m-auto mt-8">
+      <View className="m-auto mt-4">
         <ClicketyBoo
           onPressFunction={() => router.replace("/(public)/music")}
           logo="⏯️"
