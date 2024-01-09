@@ -29,7 +29,7 @@ export const Reviews = () => {
               className="my-2 mx-3 bg-slate-50 p-2 shadow"
             >
               <Text className="py-1 font-semibold ">
-                {review.screen_name} : Rating: {review.rating}
+                {review.username} : Rating: {review.rating}
               </Text>
               <Text className="italic py-1">{review.review_title}</Text>
               <Text className="mb-2">{review.review_body}</Text>

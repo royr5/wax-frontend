@@ -15,7 +15,7 @@ export interface Music {
 
 export interface Review {
   music_id: number;
-  screen_name: number;
+  username: number;
   rating: number;
   review_title: string | null;
   review_body: string | null;
