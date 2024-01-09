@@ -15,11 +15,16 @@ export interface Music {
 
 export interface Review {
   music_id: number;
-  screen_name: number;
+  screen_name: string;
   rating: number;
   review_title: string | null;
   review_body: string | null;
   created_at?: string;
 }
 
-
+export interface PostReview {
+  screen_name: string;
+  rating: number;
+  review_title: string | null;
+  review_body: string | null;
+}

@@ -1,12 +1,25 @@
 import Slider from "@react-native-community/slider";
 import { useState } from "react";
 import { Alert, Modal, Text, Pressable, View, TextInput } from "react-native";
+import { postReview } from "../utils/api";
+import { useGlobalSearchParams } from "expo-router";
+import { useUserData } from "../app/contexts/UserContent";
+import { Review } from "../types/front-end";
+import { AntDesign } from "@expo/vector-icons";
 
-const ReviewModal = () => {
+interface Iprops {
+  setReviews: Function;
+}
+
+const ReviewModal = (props: Iprops) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [rating, setRating] = useState(0);
+
+  const { music_id } = useGlobalSearchParams();
+
+  const { user } = useUserData();
 
   const handleTitle = (input: string) => {
     setTitle(input);
@@ -14,11 +27,44 @@ const ReviewModal = () => {
   const handleBody = (input: string) => {
     setBody(input);
   };
-  const handleRate = (input: number) => {};
-  
-  const handleSubmit = () => {
-    // TODO add util function to post user
+
+  const handleSubmit = async () => {
+    if (rating) {
+      try {
+        const postedReview = await postReview(music_id as string, {
+          screen_name: user.username,
+          rating: rating,
+          review_title: title,
+          review_body: body,
+        });
+
+        setModalVisible(!modalVisible);
+        setRating(0);
+
+        props.setReviews((currentReviews: Review[]) => {
+          return [
+            {
+              screen_name: user.username,
+              rating: rating,
+              review_title: title,
+              review_body: body,
+              created_at: new Date().toISOString(),
+            },
+            ...currentReviews,
+          ];
+        });
+      } catch (err) {
+        console.log("🚀 ~ file: ReviewModal.tsx:33 ~ handleSubmit ~ err:", err);
+      }
+    } else {
+      Alert.alert(
+        "Incomplete Review",
+        "Please rate the music before submitting a review.",
+        [{ text: "OK", onPress: () => console.log("close") }]
+      );
+    }
   };
+
   const reviewScores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
@@ -35,10 +81,13 @@ const ReviewModal = () => {
         <View className="w-[90%] mx-[5%] h-[60%] bg-slate-300 absolute inset-x-0 bottom-0 rounded-t-xl p-2 shadow-2xl">
           <View>
             <Pressable
-              className="justify-self-end ml-[96%]"
-              onPress={() => setModalVisible(!modalVisible)}
+              className="justify-self-end ml-[94%]"
+              onPress={() => {
+                setModalVisible(!modalVisible);
+                setRating(0);
+              }}
             >
-              <Text className="text-right">❌</Text>
+              <AntDesign name="close" size={24} color="black" />
             </Pressable>
 
             <View>
@@ -50,32 +99,26 @@ const ReviewModal = () => {
                 onValueChange={setRating}
                 className="h-10 my-2"
                 step={1}
+                value={rating}
               />
-              <Text>{rating}</Text>
+              <Text>
+                {rating} <Text className="text-red-500">*</Text>
+              </Text>
             </View>
-            {/* <View className="flex-row p-4 justify-center">
-              {reviewScores.map((num) => (
-                <Pressable
-                  key={num}
-                  onPress={() => handleRate(num)}
-                  className="mx-1 p-2 bg-orange-500 rounded-full "
-                >
-                  <Text className="w-3 text-center">{num}</Text>
-                </Pressable>
-              ))}
-            </View> */}
+
             <TextInput
               className="bg-white p-2 m-3 h-10 rounded-md"
-              placeholder="title"
+              placeholder="Enter a catchy title for your review"
               placeholderTextColor={"#0008"}
               value={title}
               onChangeText={handleTitle}
             />
             <TextInput
               className="bg-white p-2 m-3 rounded-md min-h-fit"
-              placeholder="body"
+              placeholder="Share your thoughts about the music here"
               placeholderTextColor={"#0008"}
               value={body}
+              numberOfLines={4}
               onChangeText={handleBody}
               multiline={true}
             />
@@ -83,18 +126,19 @@ const ReviewModal = () => {
               onPress={handleSubmit}
               className="bg-red-200 w-40 p-6 rounded-md mx-auto"
             >
-              <Text className="text-center">submit</Text>
+              <Text className="text-center">Submit Review</Text>
             </Pressable>
           </View>
         </View>
       </Modal>
       <Pressable
-        className="bg-red-200 w-40 p-6 rounded-md mx-auto"
+        className="bg-red-200 w-40 p-6 rounded-md mx-auto mt-3"
         onPress={() => setModalVisible(true)}
       >
-        <Text className="text-center">Show Modal</Text>
+        <Text className="text-center">Write a Review</Text>
       </Pressable>
     </View>
   );
 };
+
 export default ReviewModal;
