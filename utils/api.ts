@@ -1,10 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 
-//ANDROID
-const api = axios.create({ baseURL: "http://10.0.2.2:3000/api" });
-
-//IOS & WEB
-//  const api = axios.create({ baseURL: "http://localhost:3000/api" });
+const api = axios.create({
+  baseURL: "https://8se83n1ku9.execute-api.eu-west-2.amazonaws.com/prod/api",
+});
 
 export const getMusic = async (
   music_id?: string,
