@@ -44,6 +44,8 @@ const Albums = () => {
             onPressIn={() => {
               setButtonColor("bg-green-900");
               setDropDVis(!dropDVis);
+              setIsSpotifySearched(false)
+              setSearchText('')
             }}
             onPressOut={() => {
               setButtonColor("bg-[#15BA46]");

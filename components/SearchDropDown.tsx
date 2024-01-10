@@ -8,9 +8,9 @@ interface Props {
   setDropDVis: Function;
   isSpotifySearched: boolean;
   setIsSpotifySearched: Function;
-  setSearchedUpMusic: Function
-  searchText: string
-  setSearchText: Function
+  setSearchedUpMusic: Function;
+  searchText: string;
+  setSearchText: Function;
 }
 
 const SearchDropDown: FC<Props> = ({
@@ -20,7 +20,7 @@ const SearchDropDown: FC<Props> = ({
   setIsSpotifySearched,
   setSearchedUpMusic,
   searchText,
-  setSearchText
+  setSearchText,
 }) => {
   const [isSearchVis, setIsSearchVis] = useState(false);
   const [typeOfSearch, setTypeOfSearch] = useState("");
@@ -61,9 +61,9 @@ const SearchDropDown: FC<Props> = ({
       </View>
       {isSearchVis && (
         <MusicTypeSearch
-        searchText={searchText}
-        setSearchText={setSearchText}
-        setSearchedUpMusic={setSearchedUpMusic}
+          searchText={searchText}
+          setSearchText={setSearchText}
+          setSearchedUpMusic={setSearchedUpMusic}
           setDropDVis={setDropDVis}
           isSpotifySearched={isSpotifySearched}
           setIsSpotifySearched={setIsSpotifySearched}
