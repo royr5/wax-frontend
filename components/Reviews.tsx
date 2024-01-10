@@ -5,6 +5,7 @@ import { useGlobalSearchParams } from "expo-router";
 import { Review } from "../types/front-end";
 import ReviewModal from "./ReviewModal";
 import { UserContext } from "../app/contexts/UserContent";
+import { Ionicons } from "@expo/vector-icons";
 
 export const Reviews = () => {
   const { music_id } = useGlobalSearchParams();
@@ -40,8 +41,14 @@ export const Reviews = () => {
               <Text className="py-1 font-semibold ">
                 {review.username} : Rating: {review.rating}
               </Text>
-              { user.username === review.username?<Pressable onPress={ () => handleDelete(review.review_id as number)}className="bg-pink-300">
-                <Text>Delete</Text>
+              { user.username === review.username?<Pressable onPress={ () => handleDelete(review.review_id as number)}
+              className="ml-[92%] justify-items-end">
+                <Ionicons
+                name="trash-outline"
+                size={25}
+                color="black"
+              />
+               
               </Pressable> : ''}
               <Text className="italic py-1">{review.review_title}</Text>
               <Text className="mb-2">{review.review_body}</Text>
