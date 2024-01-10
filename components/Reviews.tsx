@@ -30,7 +30,7 @@ export const Reviews = () => {
   return (
     <>
       <ReviewModal setReviews={setReviews} />
-      <View>
+      <View className="bg-[#faf6ff]">
         <Text className="mt-10 text-center font-bold text-lg">REVIEWS</Text>
         {reviews?.filter((review: Review) => review.review_id !== deleted).map((review: Review) => {
           return (

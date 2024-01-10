@@ -33,7 +33,7 @@ const Albums = () => {
           setDropDVis(false);
         }}
       >
-        <View className="w-full h-[9%] flex-row items-center justify-start mt-[5%] bg-[#B56DE4]">
+        <View className="w-full h-[9%] flex-row items-center justify-start mt-[4%] bg-[#B56DE4] ">
           <Pressable
             className={`items-center mx-6 p-2 ${buttonColor} rounded-md bg-[#B56DE4]`}
             onPressIn={() => {
@@ -62,7 +62,7 @@ const Albums = () => {
         <SearchDropDown dropDVis={dropDVis} setDropDVis={setDropDVis} />
       )}
       <ScrollView>
-        <View className="flex flex-row flex-wrap justify-between bg-pink-50">
+        <View className="flex flex-row flex-wrap justify-between bg-pink-50 mb-20 mt-5">
           {music.map((track) => (
             <Pressable
               key={track.music_id}
@@ -75,9 +75,9 @@ const Albums = () => {
               >
                 <Image
                   source={{ uri: track.album_img }}
-                  className="w-40 h-40 shadow-xl rounded-lg"
+                  className="w-40 h-40 drop-shadow-xl rounded-lg"
                 />
-                <Text className="text-center py-1">{track.artist_names}</Text>
+                <Text className="text-center py-1 mt-2">{track.artist_names}</Text>
                 <Text className="text-center">{track.name}</Text>
               </View>
             </Pressable>
