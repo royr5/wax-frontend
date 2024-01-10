@@ -28,7 +28,7 @@ const Albums = () => {
 
   return (
     <SafeAreaView>
-      <View className="w-full h-[9%] flex-row items-center justify-start mt-8 bg-[#15BA46]">
+      <View className="w-full h-[9%] flex-row items-center justify-start mt-[5%] bg-[#15BA46]">
         <Pressable
           className={`items-center mx-6 p-2 ${buttonColor} rounded-sm`}
           onPressIn={() => {
