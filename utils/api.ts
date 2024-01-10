@@ -45,6 +45,7 @@ export const postReview = async (music_id: string, review: PostReview) => {
   }
 };
 
+
 export const getSpotifyMusic = async (type: string, q: string) => {
   try {
     const response: AxiosResponse = await api.get("/search", {
@@ -66,3 +67,13 @@ export const getSpotifyMusic = async (type: string, q: string) => {
 //     console.log("🚀 ~ file: api.ts:11 ~ getMusic ~ err:", err);
 //   }
 // };
+
+export const deleteReview = async (review_id: number) => {
+  try {
+    const response: AxiosResponse = await api.delete(`/reviews/${review_id}`);
+    return response.data;
+  } catch (err) {
+    console.log("🚀 ~ file: api.ts:51 ~ deleteReview ~ err:", err);
+  }
+};
+
