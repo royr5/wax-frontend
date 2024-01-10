@@ -1,8 +1,10 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Pressable } from "react-native";
 import { Music } from "../types/front-end";
 import React, { useEffect, useState } from "react";
 import { useGlobalSearchParams } from "expo-router";
 import { getMusic } from "../utils/api";
+import TrackPlayer from "react-native-track-player";
+import { Ionicons } from "@expo/vector-icons";
 
 const AlbumPage = () => {
   const { music_id } = useGlobalSearchParams();
@@ -23,6 +25,22 @@ const AlbumPage = () => {
     };
     doThis();
   }, []);
+
+  const start = async () => {
+    if (musicContent) {
+      await TrackPlayer.setupPlayer;
+      await TrackPlayer.add({
+        id: musicContent.music_id,
+        url: musicContent.preview,
+        title: musicContent.name,
+        artist: musicContent.artist_names[0],
+        artwork: musicContent.album_img,
+      });
+      const tracks = await TrackPlayer.getQueue()
+      console.log(tracks)
+      await TrackPlayer.play();
+    }
+  };
 
   return (
     <View className="bg-gray-100 flex justify-center items-center">
@@ -45,6 +63,9 @@ const AlbumPage = () => {
           height: 400,
         }}
       />
+      <Pressable onPress={start}>
+        <Ionicons name="play" size={30} color={'black'}/>
+      </Pressable>
       {!musicContent?.avg_rating && (
         <Text className="font-bold text-lg">no reviews yet...</Text>
       )}
