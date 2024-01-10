@@ -15,13 +15,13 @@ const SearchDropDown: FC<Props> = ({ dropDVis, setDropDVis }) => {
   const [isPressedIn2, setIsPressedIn2] = useState(false);
 
   return (
-    <Modal visible={dropDVis} animationType="fade" transparent={true}>
+    <View >
       <Pressable
         onPress={() => {
           setDropDVis(!dropDVis);
         }}
       >
-        <View className="bg-white mt-[26%] pl-4 pb-4 justify-start items-start">
+        <View className="bg-white pl-4 pb-4 justify-start items-start">
           <Pressable
             onPressIn={() => {
               setIsSearchVis(true);
@@ -57,7 +57,7 @@ const SearchDropDown: FC<Props> = ({ dropDVis, setDropDVis }) => {
           />
         )}
       </Pressable>
-    </Modal>
+    </View>
   );
 };
 export default SearchDropDown;
