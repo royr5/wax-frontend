@@ -28,30 +28,36 @@ const Albums = () => {
 
   return (
     <SafeAreaView>
-      <View className="w-full h-[9%] flex-row items-center justify-start mt-[5%] bg-[#15BA46]">
-        <Pressable
-          className={`items-center mx-6 p-2 ${buttonColor} rounded-sm`}
-          onPressIn={() => {
-            setButtonColor("bg-green-900");
-            setDropDVis(!dropDVis);
-          }}
-          onPressOut={() => {
-            setButtonColor("bg-[#15BA46]");
-          }}
-        >
-          <Ionicons
-            name="search-outline"
-            size={30}
-            color="black"
-            className="m-4"
+      <TouchableWithoutFeedback
+        onPress={() => {
+          setDropDVis(false);
+        }}
+      >
+        <View className="w-full h-[9%] flex-row items-center justify-start mt-[5%] bg-[#15BA46]">
+          <Pressable
+            className={`items-center mx-6 p-2 ${buttonColor} rounded-sm`}
+            onPressIn={() => {
+              setButtonColor("bg-green-900");
+              setDropDVis(!dropDVis);
+            }}
+            onPressOut={() => {
+              setButtonColor("bg-[#15BA46]");
+            }}
+          >
+            <Ionicons
+              name="search-outline"
+              size={30}
+              color="black"
+              className="m-4"
+            />
+          </Pressable>
+          <Image
+            source={require("../../../assets/images/Wax-logo-transparent.png")}
+            className="h-full w-[50%]"
+            resizeMode="center"
           />
-        </Pressable>
-        <Image
-          source={require("../../../assets/images/Wax-logo-transparent.png")}
-          className="h-full w-[50%]"
-          resizeMode="center"
-        />
-      </View>
+        </View>
+      </TouchableWithoutFeedback>
       {dropDVis && (
         <SearchDropDown dropDVis={dropDVis} setDropDVis={setDropDVis} />
       )}

@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { PostReview } from "../types/front-end";
 
-
 const api = axios.create({
   baseURL: "https://8se83n1ku9.execute-api.eu-west-2.amazonaws.com/prod/api",
 });
@@ -45,3 +44,25 @@ export const postReview = async (music_id: string, review: PostReview) => {
     console.log("🚀 ~ file: api.ts:40 ~ postReview ~ err:", err);
   }
 };
+
+export const getSpotifyMusic = async (type: string, q: string) => {
+  try {
+    const response: AxiosResponse = await api.get("/search", {
+      params: { q, type },
+    });
+    return response;
+  } catch (err) {
+    console.log("🚀 ~ getSpotifyMusic ~ err:", err);
+  }
+};
+
+// export const getSpotifyMusic = async () => {
+//   try {
+//     const response: AxiosResponse = await api.get(
+//       "/search?q=take+care&type=album"
+//     );
+//     console.log("🚀 ~ getSpotifyMusic ~ response:", response);
+//   } catch (err) {
+//     console.log("🚀 ~ file: api.ts:11 ~ getMusic ~ err:", err);
+//   }
+// };
