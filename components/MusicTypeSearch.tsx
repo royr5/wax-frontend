@@ -2,6 +2,7 @@ import { Alert, Pressable, Text, TextInput, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { FC, useState } from "react";
 import { getSpotifyMusic } from "../utils/api";
+import { getSearchedMusic } from "../utils/spotify";
 
 interface Props {
   isSearchVis: boolean;
@@ -30,10 +31,9 @@ const MusicTypeSearch: FC<Props> = ({
     if (searchText) {
       try {
         const spotifyMusic = await getSpotifyMusic(typeOfSearch, searchText);
-        console.log("🚀 ~ handleSearchSubmit ~ spotifyMusic:", spotifyMusic);
-
+console.log(spotifyMusic)
         setIsSpotifySearched(!isSpotifySearched);
-        setDropDVis(false)
+        setDropDVis(false);
         // setSearchedUpMusic(spotifyMusic);
       } catch (err) {
         console.log("🚀 ~ handleSearchSubmit ~ err:", err);
@@ -57,7 +57,7 @@ const MusicTypeSearch: FC<Props> = ({
           placeholder={typeOfSearch}
           placeholderTextColor="gray"
           value={searchText}
-          onChangeText={(e)=>setSearchText(e)}
+          onChangeText={(e) => setSearchText(e)}
         />
         <Pressable
           className="bg-black border-2 border-black p-3 rounded"

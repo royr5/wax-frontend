@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 import { PostReview } from "../types/front-end";
+import { getSearchedMusic } from "./spotify";
 
 const api = axios.create({
-  baseURL: "https://8se83n1ku9.execute-api.eu-west-2.amazonaws.com/prod/api",
+  baseURL: "https://0okk8avr80.execute-api.eu-west-2.amazonaws.com/prod/api",
 });
 
 export const getMusic = async (
@@ -48,9 +49,14 @@ export const postReview = async (music_id: string, review: PostReview) => {
 
 export const getSpotifyMusic = async (type: string, q: string) => {
   try {
-    const response: AxiosResponse = await api.get("/search", {
-      params: { q, type },
+
+    const matchedMusic = await getSearchedMusic(type, q)
+    console.log(matchedMusic,"\n\n")
+
+    const response: AxiosResponse = await api.post("/search", {
+      matchedMusic
     });
+    console.log(response.data)
     return response;
   } catch (err) {
     console.log("🚀 ~ getSpotifyMusic ~ err:", err);
