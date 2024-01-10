@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { PostReview } from "../types/front-end";
 
-
 const api = axios.create({
   baseURL: "https://8se83n1ku9.execute-api.eu-west-2.amazonaws.com/prod/api",
 });
@@ -43,5 +42,14 @@ export const postReview = async (music_id: string, review: PostReview) => {
     return response.data.review;
   } catch (err) {
     console.log("🚀 ~ file: api.ts:40 ~ postReview ~ err:", err);
+  }
+};
+
+export const deleteReview = async (review_id: number) => {
+  try {
+    const response: AxiosResponse = await api.delete(`/reviews/${review_id}`);
+    return response.data;
+  } catch (err) {
+    console.log("🚀 ~ file: api.ts:51 ~ deleteReview ~ err:", err);
   }
 };
