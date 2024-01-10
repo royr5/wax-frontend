@@ -7,20 +7,34 @@ interface Props {
   isSearchVis: boolean;
   setIsSearchVis: Function;
   typeOfSearch: string;
+  isSpotifySearched: boolean;
+  setIsSpotifySearched: Function;
+  setDropDVis: Function;
+  setSearchedUpMusic: Function;
+  searchText: string;
+  setSearchText: Function;
 }
 
 const MusicTypeSearch: FC<Props> = ({
   setIsSearchVis,
   isSearchVis,
   typeOfSearch,
+  isSpotifySearched,
+  setIsSpotifySearched,
+  setDropDVis,
+  setSearchedUpMusic,
+  searchText,
+  setSearchText,
 }) => {
-  const [searchText, setSearchText] = useState("");
-
   const handleSearchSubmit = async () => {
     if (searchText) {
       try {
         const spotifyMusic = await getSpotifyMusic(typeOfSearch, searchText);
         console.log("🚀 ~ handleSearchSubmit ~ spotifyMusic:", spotifyMusic);
+
+        setIsSpotifySearched(!isSpotifySearched);
+        setDropDVis(false)
+        // setSearchedUpMusic(spotifyMusic);
       } catch (err) {
         console.log("🚀 ~ handleSearchSubmit ~ err:", err);
       }
@@ -43,7 +57,7 @@ const MusicTypeSearch: FC<Props> = ({
           placeholder={typeOfSearch}
           placeholderTextColor="gray"
           value={searchText}
-          onChangeText={setSearchText}
+          onChangeText={(e)=>setSearchText(e)}
         />
         <Pressable
           className="bg-black border-2 border-black p-3 rounded"
