@@ -45,6 +45,29 @@ export const postReview = async (music_id: string, review: PostReview) => {
   }
 };
 
+
+export const getSpotifyMusic = async (type: string, q: string) => {
+  try {
+    const response: AxiosResponse = await api.get("/search", {
+      params: { q, type },
+    });
+    return response;
+  } catch (err) {
+    console.log("🚀 ~ getSpotifyMusic ~ err:", err);
+  }
+};
+
+// export const getSpotifyMusic = async () => {
+//   try {
+//     const response: AxiosResponse = await api.get(
+//       "/search?q=take+care&type=album"
+//     );
+//     console.log("🚀 ~ getSpotifyMusic ~ response:", response);
+//   } catch (err) {
+//     console.log("🚀 ~ file: api.ts:11 ~ getMusic ~ err:", err);
+//   }
+// };
+
 export const deleteReview = async (review_id: number) => {
   try {
     const response: AxiosResponse = await api.delete(`/reviews/${review_id}`);
@@ -53,3 +76,4 @@ export const deleteReview = async (review_id: number) => {
     console.log("🚀 ~ file: api.ts:51 ~ deleteReview ~ err:", err);
   }
 };
+
