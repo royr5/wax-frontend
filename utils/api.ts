@@ -46,24 +46,18 @@ export const postReview = async (music_id: string, review: PostReview) => {
   }
 };
 
-
 export const getSpotifyMusic = async (type: string, q: string) => {
   try {
-
-    const matchedMusic = await getSearchedMusic(type, q)
-    console.log(matchedMusic,"\n\n")
+    const matchedMusic = await getSearchedMusic(type, q);
 
     const response: AxiosResponse = await api.post("/search", {
-      matchedMusic
+      matchedMusic,
     });
-    console.log(response.data)
-    return response;
+    return response.data.music;
   } catch (err) {
     console.log("🚀 ~ getSpotifyMusic ~ err:", err);
   }
 };
-
-
 
 export const deleteReview = async (review_id: number) => {
   try {
@@ -73,4 +67,3 @@ export const deleteReview = async (review_id: number) => {
     console.log("🚀 ~ file: api.ts:51 ~ deleteReview ~ err:", err);
   }
 };
-

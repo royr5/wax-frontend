@@ -31,10 +31,9 @@ const MusicTypeSearch: FC<Props> = ({
     if (searchText) {
       try {
         const spotifyMusic = await getSpotifyMusic(typeOfSearch, searchText);
-console.log(spotifyMusic)
         setIsSpotifySearched(!isSpotifySearched);
         setDropDVis(false);
-        // setSearchedUpMusic(spotifyMusic);
+        setSearchedUpMusic(spotifyMusic);
       } catch (err) {
         console.log("🚀 ~ handleSearchSubmit ~ err:", err);
       }
