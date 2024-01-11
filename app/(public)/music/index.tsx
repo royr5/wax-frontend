@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Image,
   Pressable,
   ScrollView,
@@ -22,14 +23,28 @@ const Albums = () => {
   const [isSpotifySearched, setIsSpotifySearched] = useState(false);
   const [searchedUpMusic, setSearchedUpMusic] = useState<Music[]>([]);
   const [searchText, setSearchText] = useState(" ");
+  const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     const doThis = async () => {
       const musicData = await getMusic();
       setMusic(musicData);
+      setisLoading(false);
     };
     doThis();
   }, [isSpotifySearched]);
+
+  if (isLoading) {
+    return (
+      <View className="mt-[100%]">
+        <ActivityIndicator
+          size="large"
+          style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }] }}
+          color="#B56DE4"
+        />
+      </View>
+    );
+  }
 
   return (
     <SafeAreaView>
@@ -97,7 +112,7 @@ const Albums = () => {
                 >
                   <Image
                     source={{ uri: track.album_img }}
-                    className="w-40 h-40 drop-shadow-xl  rounded-lg"
+                    className="w-40 h-40   rounded-lg"
                   />
                   <Text className="text-center py-1 mt-2">
                     {track.artist_names}

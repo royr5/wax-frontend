@@ -61,7 +61,7 @@ const AlbumPage = () => {
         {musicContent?.name}
       </Text>
       <Text>by</Text>
-      <View className="flex-row mb-3">
+      <View className="mb-3">
         {musicContent?.artist_names.map((artistName) => {
           return (
             <Text
@@ -76,7 +76,7 @@ const AlbumPage = () => {
 
       <Image
         source={{ uri: musicContent?.album_img }}
-        className="h-[350] w-[350] shadow-2xl rounded-md"
+        className="h-[350] w-[350] rounded-md"
       />
       {musicContent?.preview && (
         <Pressable onPress={handlePlay}>
@@ -88,7 +88,7 @@ const AlbumPage = () => {
         <Text className="font-bold text-lg">no reviews yet...</Text>
       )}
       {musicContent?.avg_rating && (
-        <Text className={`${ratingColor} font-bold text-lg m-2 shadow-2xl p-2`}>
+        <Text className={`${ratingColor} font-bold text-lg m-2 p-2`}>
           Rating: {musicContent?.avg_rating}
         </Text>
       )}
