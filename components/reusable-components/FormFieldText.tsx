@@ -51,7 +51,7 @@ interface Props {
   isRequired?: boolean;
   autoComplete?: autoComplete;
   enterKeyHint?: "enter" | "done" | "next" | "search" | "go";
-  isMultiline?: boolean;
+  onSubmitFunction: any;
 }
 
 export const FormFieldText: FC<Props> = ({
@@ -60,7 +60,7 @@ export const FormFieldText: FC<Props> = ({
   isRequired,
   autoComplete,
   enterKeyHint,
-  isMultiline,
+  onSubmitFunction,
 }) => {
   const [newText, setNewText] = useState("");
 
@@ -82,7 +82,8 @@ export const FormFieldText: FC<Props> = ({
         }
         secureTextEntry={autoComplete.endsWith("password")}
         enterKeyHint={enterKeyHint || "enter"}
-        multiline={isMultiline || false}
+        enablesReturnKeyAutomatically={true}
+        onSubmitEditing={onSubmitFunction}
         className="bg-white p-2 m-5 rounded"
       />
     </View>

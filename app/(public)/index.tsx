@@ -8,7 +8,7 @@ import { router } from "expo-router";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const Welcome = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
@@ -16,17 +16,18 @@ const Welcome = () => {
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View className="w-full h-1/4 justify-center items-center mt-14">
           <Image
-            source={require("../../assets/images/Wax-logo-transparent.png")}
+            source={require("../../assets/images/icon.png")}
             resizeMode="center"
           />
         </View>
-        <View className="mt-8 mb-0 p-2 m-2">
+        <View className="mt-16 p-2">
           <FormFieldText
-            label="Email"
-            setText={setEmail}
+            label="Username"
+            setText={setUsername}
             isRequired={true}
-            autoComplete="email"
+            autoComplete="username"
             enterKeyHint="next"
+            onSubmitFunction={() => {}}
           />
 
           <FormFieldText
@@ -35,13 +36,13 @@ const Welcome = () => {
             isRequired={true}
             autoComplete="current-password"
             enterKeyHint="go"
+            onSubmitFunction={() => router.replace("/(public)/music")}
           />
         </View>
       </TouchableWithoutFeedback>
       <View className="m-auto mt-4">
         <ClicketyBoo
           onPressFunction={() => router.replace("/(public)/music")}
-          
           text="log in"
         />
       </View>
