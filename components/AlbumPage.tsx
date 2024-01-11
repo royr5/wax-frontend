@@ -1,13 +1,18 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Pressable } from "react-native";
 import { Music } from "../types/front-end";
 import React, { useEffect, useState } from "react";
 import { useGlobalSearchParams } from "expo-router";
 import { getMusic } from "../utils/api";
+import { Audio } from "expo-av";
+import { Ionicons } from "@expo/vector-icons";
 
 const AlbumPage = () => {
   const { music_id } = useGlobalSearchParams();
   const [musicContent, setMusicContent] = useState<Music>();
   const [ratingColor, setRatingColor] = useState("text-green-800");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [sound, setSound] = useState<Audio.Sound | undefined>();
+
 
   useEffect(() => {
     const doThis = async () => {
@@ -23,6 +28,32 @@ const AlbumPage = () => {
     };
     doThis();
   }, []);
+
+  const handlePlay = async () => {
+
+    await playPreview(!isPlaying);
+  };
+
+  const playPreview = async (bool: boolean) => {
+    if (typeof musicContent?.preview === "string" && bool) {
+
+      const { sound } = await Audio.Sound.createAsync(
+        {
+          uri: musicContent.preview,
+        },
+        { shouldPlay: true }
+      );
+      setSound(sound);
+
+      await sound.playAsync();
+    } else if (typeof musicContent?.preview === "string" && !bool && sound) {
+
+      await sound.unloadAsync();
+    }
+    setIsPlaying((current) => {
+      return !current;
+    });
+  };
 
   return (
     <View className="bg-[#faf6ff] flex justify-center items-center">
@@ -47,6 +78,12 @@ const AlbumPage = () => {
         source={{ uri: musicContent?.album_img }}
         className="h-[350] w-[350] rounded-md"
       />
+      {musicContent?.preview && (
+        <Pressable onPress={handlePlay}>
+          {!isPlaying && <Ionicons name='play' size={30} color={"black"} />}
+          {isPlaying && <Ionicons name='pause' size={30} color={"black"} />}
+        </Pressable>
+      )}
       {!musicContent?.avg_rating && (
         <Text className="font-bold text-lg">no reviews yet...</Text>
       )}
