@@ -43,25 +43,22 @@ const AlbumPage = () => {
   };
 
   return (
-    <View className="bg-gray-100 flex justify-center items-center">
-      <Text className="text-center m-50 text-xl font-bold">
+    <View className="bg-[#faf6ff] flex justify-center items-center">
+      <Text className="text-center  text-xl font-bold my-3 ">
         {musicContent?.name}
       </Text>
-      <Text>by</Text>
+      <Text>by</Text><View className="flex-row mb-3">
       {musicContent?.artist_names.map((artistName) => {
         return (
-          <Text key={artistName} className="text-center m-50 text-xl m-1">
-            {artistName}
+          <Text key={artistName} className="text-center m-50 text-xl m-1 underline-offset-3 underline">
+            {artistName} 
           </Text>
         );
-      })}
+      })}</View>
 
       <Image
         source={{ uri: musicContent?.album_img }}
-        style={{
-          width: 400,
-          height: 400,
-        }}
+       className="h-[350] w-[350] shadow-2xl rounded-md"
       />
       <Pressable onPress={start}>
         <Ionicons name="play" size={30} color={'black'}/>
@@ -70,7 +67,7 @@ const AlbumPage = () => {
         <Text className="font-bold text-lg">no reviews yet...</Text>
       )}
       {musicContent?.avg_rating && (
-        <Text className={`${ratingColor} font-bold text-lg`}>
+        <Text className={`${ratingColor} font-bold text-lg m-2 shadow-2xl p-2`}>
           Rating: {musicContent?.avg_rating}
         </Text>
       )}

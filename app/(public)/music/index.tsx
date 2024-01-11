@@ -38,9 +38,9 @@ const Albums = () => {
           setDropDVis(false);
         }}
       >
-        <View className="w-full h-[9%] flex-row items-center justify-start mt-[5%] bg-[#15BA46]">
+        <View className="w-full h-[9%] flex-row items-center justify-start mt-[4%] bg-[#B56DE4] ">
           <Pressable
-            className={`items-center mx-6 p-2 ${buttonColor} rounded-sm`}
+            className={`items-center mx-6 p-2 ${buttonColor} rounded-md bg-[#B56DE4]`}
             onPressIn={() => {
               setButtonColor("bg-green-900");
               setDropDVis(!dropDVis);
@@ -81,7 +81,7 @@ const Albums = () => {
       }
       {isSpotifySearched ? (
         <ScrollView>
-          <View className="flex flex-row flex-wrap justify-between bg-white">
+          <View className="flex flex-row flex-wrap justify-betweenbg-pink-50 mb-20 mt-5">
             {searchedUpMusic.map((track) => (
               <Pressable
                 key={track.music_id}
@@ -90,13 +90,13 @@ const Albums = () => {
               >
                 <View
                   key={track.music_id}
-                  className=" p-4 bg-white rounded-lg items-center justify-center"
+                  className=" p-4 pink-50  rounded-lg items-center justify-center"
                 >
                   <Image
                     source={{ uri: track.album_img }}
-                    className="w-40 h-40  rounded-lg"
+                    className="w-40 h-40 drop-shadow-xl  rounded-lg"
                   />
-                  <Text className="text-center py-1">{track.artist_names}</Text>
+                  <Text className="text-center py-1 mt-2">{track.artist_names}</Text>
                   <Text className="text-center">{track.name}</Text>
                 </View>
               </Pressable>

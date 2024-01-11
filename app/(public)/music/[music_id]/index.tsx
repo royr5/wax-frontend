@@ -5,14 +5,9 @@ import { Reviews } from "../../../../components/Reviews";
 
 export default () => {
   return (
-    <SafeAreaView>
       <ScrollView>
-        {/* <Text>
-          hey this is where a specific album would be album - {music_id}
-        </Text> */}
         <AlbumPage />
         <Reviews />
       </ScrollView>
-    </SafeAreaView>
   );
 };

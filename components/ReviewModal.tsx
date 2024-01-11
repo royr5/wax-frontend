@@ -67,7 +67,7 @@ const ReviewModal = (props: Iprops) => {
 
 
   return (
-    <View>
+    <View className="bg-[#faf6ff]">
       <Modal
         animationType="slide"
         transparent={true}
@@ -77,7 +77,7 @@ const ReviewModal = (props: Iprops) => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View className="w-[90%] mx-[5%] h-[60%] bg-slate-300 absolute inset-x-0 bottom-0 rounded-t-xl p-2 shadow-2xl">
+        <View className="w-[90%] mx-[5%] h-[60%] bg-[#d8bbff] absolute inset-x-0 bottom-0 rounded-t-xl p-2 ">
           <View>
             <Pressable
               className="justify-self-end ml-[94%]"
@@ -89,19 +89,19 @@ const ReviewModal = (props: Iprops) => {
               <AntDesign name="close" size={24} color="black" />
             </Pressable>
 
-            <View>
+            <View className="justify-center">
               <Slider
                 minimumValue={0}
                 maximumValue={10}
-                minimumTrackTintColor="#16b946"
+                minimumTrackTintColor="#ffffffc0"
                 maximumTrackTintColor="#000000"
                 onValueChange={setRating}
                 className="h-10 my-2"
                 step={1}
                 value={rating}
               />
-              <Text>
-                {rating} <Text className="text-red-500">*</Text>
+              <Text className="mx-auto text-xl">
+                {rating}
               </Text>
             </View>
 
@@ -123,7 +123,7 @@ const ReviewModal = (props: Iprops) => {
             />
             <Pressable
               onPress={handleSubmit}
-              className="bg-red-200 w-40 p-6 rounded-md mx-auto"
+              className="bg-[#ffffffc0] w-40 p-4 mt-3 rounded-md mx-auto"
             >
               <Text className="text-center">Submit Review</Text>
             </Pressable>
@@ -131,10 +131,10 @@ const ReviewModal = (props: Iprops) => {
         </View>
       </Modal>
       <Pressable
-        className="bg-red-200 w-40 p-6 rounded-md mx-auto mt-3"
+        className="bg-[#bd91fcc0] mx-auto mt-5 p-3 rounded-md"
         onPress={() => setModalVisible(true)}
       >
-        <Text className="text-center">Write a Review</Text>
+        <Text className="text-center  ">Write a Review</Text>
       </Pressable>
     </View>
   );

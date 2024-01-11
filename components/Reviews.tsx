@@ -30,13 +30,13 @@ export const Reviews = () => {
   return (
     <>
       <ReviewModal setReviews={setReviews} />
-      <View>
+      <View className="bg-[#faf6ff]">
         <Text className="mt-10 text-center font-bold text-lg">REVIEWS</Text>
         {reviews?.filter((review: Review) => review.review_id !== deleted).map((review: Review) => {
           return (
             <View
               key={Math.random()}
-              className="my-2 mx-3 bg-slate-50 p-2 shadow"
+              className="my-2 mx-3 bg-slate-50 p-2"
             >
               <Text className="py-1 font-semibold ">
                 {review.username} : Rating: {review.rating}
