@@ -3,7 +3,7 @@ import { Music } from "../types/front-end";
 import React, { useEffect, useState } from "react";
 import { useGlobalSearchParams } from "expo-router";
 import { getMusic } from "../utils/api";
-import TrackPlayer from "react-native-track-player";
+import { Audio } from "expo-av";
 import { Ionicons } from "@expo/vector-icons";
 
 const AlbumPage = () => {
@@ -26,19 +26,22 @@ const AlbumPage = () => {
     doThis();
   }, []);
 
-  const start = async () => {
-    if (musicContent) {
-      await TrackPlayer.setupPlayer;
-      await TrackPlayer.add({
-        id: musicContent.music_id,
-        url: musicContent.preview,
-        title: musicContent.name,
-        artist: musicContent.artist_names[0],
-        artwork: musicContent.album_img,
-      });
-      const tracks = await TrackPlayer.getQueue()
-      console.log(tracks)
-      await TrackPlayer.play();
+  const playPreview = async () => {
+    console.log("yo")
+    console.log(musicContent?.preview)
+    if (typeof musicContent?.preview === "string") {
+      const sound = new Audio.Sound();
+
+      console.log(sound)
+
+      await sound.loadAsync(
+        {
+          uri: musicContent.preview,
+        },
+        { shouldPlay: true }
+      );
+
+      await sound.playAsync();
     }
   };
 
@@ -47,21 +50,26 @@ const AlbumPage = () => {
       <Text className="text-center  text-xl font-bold my-3 ">
         {musicContent?.name}
       </Text>
-      <Text>by</Text><View className="flex-row mb-3">
-      {musicContent?.artist_names.map((artistName) => {
-        return (
-          <Text key={artistName} className="text-center m-50 text-xl m-1 underline-offset-3 underline">
-            {artistName} 
-          </Text>
-        );
-      })}</View>
+      <Text>by</Text>
+      <View className="flex-row mb-3">
+        {musicContent?.artist_names.map((artistName) => {
+          return (
+            <Text
+              key={artistName}
+              className="text-center m-50 text-xl m-1 underline-offset-3 underline"
+            >
+              {artistName}
+            </Text>
+          );
+        })}
+      </View>
 
       <Image
         source={{ uri: musicContent?.album_img }}
-       className="h-[350] w-[350] shadow-2xl rounded-md"
+        className="h-[350] w-[350] shadow-2xl rounded-md"
       />
-      <Pressable onPress={start}>
-        <Ionicons name="play" size={30} color={'black'}/>
+      <Pressable onPress={playPreview}>
+        <Ionicons name="play" size={30} color={"black"} />
       </Pressable>
       {!musicContent?.avg_rating && (
         <Text className="font-bold text-lg">no reviews yet...</Text>
