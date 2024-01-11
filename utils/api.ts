@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { PostReview } from "../types/front-end";
 
 const api = axios.create({
-  baseURL: "https://8se83n1ku9.execute-api.eu-west-2.amazonaws.com/prod/api",
+  baseURL: "https://0okk8avr80.execute-api.eu-west-2.amazonaws.com/prod/api",
 });
 
 export const getMusic = async (
