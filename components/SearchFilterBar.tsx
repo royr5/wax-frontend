@@ -10,7 +10,7 @@ View;
 const SearchFilterBar: FC<Props> = ({ searchText, setIsSpotifySearched }) => {
   return (
     <View className=" h-[4%] w-[100%] flex-row items-center">
-        <Text className=" ml-8 text-lg">{searchText}</Text>
+        <Text className="ml-8 text-lg">Search results for {searchText}</Text>
       <Pressable
         onPress={() => {
           setIsSpotifySearched(false)

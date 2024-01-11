@@ -112,7 +112,7 @@ const Albums = () => {
                 >
                   <Image
                     source={{ uri: track.album_img }}
-                    className="w-40 h-40 drop-shadow-xl  rounded-lg"
+                    className="w-40 h-40   rounded-lg"
                   />
                   <Text className="text-center py-1 mt-2">
                     {track.artist_names}

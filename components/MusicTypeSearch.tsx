@@ -1,8 +1,15 @@
-import { Alert, Pressable, Text, TextInput, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  Pressable,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { getSpotifyMusic } from "../utils/api";
-import { getSearchedMusic } from "../utils/spotify";
+import { useState } from "react";
 
 interface Props {
   isSearchVis: boolean;
@@ -27,12 +34,16 @@ const MusicTypeSearch: FC<Props> = ({
   searchText,
   setSearchText,
 }) => {
+  const [isLoading, setisLoading] = useState(false);
+
   const handleSearchSubmit = async () => {
     if (searchText) {
+      setisLoading(true);
       try {
         const spotifyMusic = await getSpotifyMusic(typeOfSearch, searchText);
-        setIsSpotifySearched(!isSpotifySearched);
         setDropDVis(false);
+        setisLoading(false);
+        setIsSpotifySearched(!isSpotifySearched);
         setSearchedUpMusic(spotifyMusic);
       } catch (err) {
         console.log("🚀 ~ handleSearchSubmit ~ err:", err);
@@ -53,8 +64,15 @@ const MusicTypeSearch: FC<Props> = ({
     >
       <View className=" bg-white flex flex-row items-center justify-items-center">
         <TextInput
+          enterKeyHint="search"
+          enablesReturnKeyAutomatically={true}
+          onSubmitEditing={handleSearchSubmit}
           className="border-2 m-5 p-3 focus:border-[#B56DE4] rounded w-[75%]"
-          placeholder={typeOfSearch}
+          placeholder={
+            typeOfSearch === "album"
+              ? "search albums by artist or album name"
+              : "search tracks by artist or track name"
+          }
           placeholderTextColor="#0008"
           value={searchText}
           onChangeText={(e) => setSearchText(e)}
@@ -64,7 +82,11 @@ const MusicTypeSearch: FC<Props> = ({
           onPress={handleSearchSubmit}
         >
           <Text>
-            <Ionicons name="search-outline" size={24} color="white" />
+            {isLoading ? (
+              <ActivityIndicator size="small" color="#ffffff" />
+            ) : (
+              <Ionicons name="search-outline" size={24} color="white" />
+            )}
           </Text>
         </Pressable>
       </View>

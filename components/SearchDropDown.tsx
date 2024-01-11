@@ -29,7 +29,7 @@ const SearchDropDown: FC<Props> = ({
 
   return (
     <View>
-      <View className="bg-white pl-4 pb-4 justify-start items-start">
+      <View className="bg-white pl-4 pb-2 pt-2 justify-start items-start">
         <Pressable
           hitSlop={{ right: 1000 }}
           onPressIn={() => {

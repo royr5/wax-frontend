@@ -29,24 +29,29 @@ const AlbumPage = () => {
       <Text className="text-center  text-xl font-bold my-3 ">
         {musicContent?.name}
       </Text>
-      <Text>by</Text><View className="mb-3">
-      {musicContent?.artist_names.map((artistName) => {
-        return (
-          <Text key={artistName} className="text-center m-50 text-xl m-1 underline-offset-3 underline">
-            {artistName} 
-          </Text>
-        );
-      })}</View>
+      <Text>by</Text>
+      <View className="mb-3">
+        {musicContent?.artist_names.map((artistName) => {
+          return (
+            <Text
+              key={artistName}
+              className="text-center m-50 text-xl m-1 underline-offset-3 underline"
+            >
+              {artistName}
+            </Text>
+          );
+        })}
+      </View>
 
       <Image
         source={{ uri: musicContent?.album_img }}
-       className="h-[350] w-[350] shadow-2xl rounded-md"
+        className="h-[350] w-[350] rounded-md"
       />
       {!musicContent?.avg_rating && (
         <Text className="font-bold text-lg">no reviews yet...</Text>
       )}
       {musicContent?.avg_rating && (
-        <Text className={`${ratingColor} font-bold text-lg m-2 shadow-2xl p-2`}>
+        <Text className={`${ratingColor} font-bold text-lg m-2 p-2`}>
           Rating: {musicContent?.avg_rating}
         </Text>
       )}
