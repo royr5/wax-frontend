@@ -20,7 +20,7 @@ const Welcome = () => {
             resizeMode="center"
           />
         </View>
-        <View className="mt-8 mb-0 p-2 m-2">
+        <View className="mt-16 p-2">
           <FormFieldText
             label="Email"
             setText={setEmail}
