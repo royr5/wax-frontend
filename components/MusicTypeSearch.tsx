@@ -36,8 +36,7 @@ const MusicTypeSearch: FC<Props> = ({
         setSearchedUpMusic(spotifyMusic);
       } catch (err) {
         console.log("🚀 ~ handleSearchSubmit ~ err:", err);
-      }finally{
-
+      } finally {
       }
     } else {
       Alert.alert("Incomplete Search", "Please add in text before searching", [
@@ -45,7 +44,6 @@ const MusicTypeSearch: FC<Props> = ({
       ]);
     }
   };
-
 
   return (
     <Pressable
@@ -55,7 +53,7 @@ const MusicTypeSearch: FC<Props> = ({
     >
       <View className=" bg-white flex flex-row items-center justify-items-center">
         <TextInput
-          className="border-2 m-5 p-3 focus:border-green-600 rounded w-[75%]"
+          className="border-2 m-5 p-3 focus:border-[#B56DE4] rounded w-[75%]"
           placeholder={typeOfSearch}
           placeholderTextColor="#0008"
           value={searchText}

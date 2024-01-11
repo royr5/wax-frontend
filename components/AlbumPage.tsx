@@ -29,7 +29,7 @@ const AlbumPage = () => {
       <Text className="text-center  text-xl font-bold my-3 ">
         {musicContent?.name}
       </Text>
-      <Text>by</Text><View className="flex-row mb-3">
+      <Text>by</Text><View className="mb-3">
       {musicContent?.artist_names.map((artistName) => {
         return (
           <Text key={artistName} className="text-center m-50 text-xl m-1 underline-offset-3 underline">
