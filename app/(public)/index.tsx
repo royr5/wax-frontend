@@ -8,7 +8,7 @@ import { router } from "expo-router";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const Welcome = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
@@ -22,11 +22,12 @@ const Welcome = () => {
         </View>
         <View className="mt-16 p-2">
           <FormFieldText
-            label="Email"
-            setText={setEmail}
+            label="Username"
+            setText={setUsername}
             isRequired={true}
-            autoComplete="email"
+            autoComplete="username"
             enterKeyHint="next"
+            onSubmitFunction={() => {}}
           />
 
           <FormFieldText
@@ -35,6 +36,7 @@ const Welcome = () => {
             isRequired={true}
             autoComplete="current-password"
             enterKeyHint="go"
+            onSubmitFunction={() => router.replace("/(public)/music")}
           />
         </View>
       </TouchableWithoutFeedback>
