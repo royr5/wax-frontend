@@ -81,11 +81,11 @@ export const searchSpotify = async (token: string, q: string, type: string) => {
 
     return formattedSpotify;
   } catch (err) {
-    throw err;
+    console.log(err);
   }
 };
 
-export const getSearchedMusic = async ( type: string,q: string) => {
+export const getSearchedMusic = async (type: string, q: string) => {
   try {
     const { access_token } = await refreshAccessToken();
 
@@ -96,7 +96,6 @@ export const getSearchedMusic = async ( type: string,q: string) => {
     );
 
     if (matchedMusic) {
-
       return matchedMusic;
     }
   } catch (err) {
