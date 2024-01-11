@@ -6,9 +6,22 @@ import MusicTypeSearch from "./MusicTypeSearch";
 interface Props {
   dropDVis: boolean;
   setDropDVis: Function;
+  isSpotifySearched: boolean;
+  setIsSpotifySearched: Function;
+  setSearchedUpMusic: Function;
+  searchText: string;
+  setSearchText: Function;
 }
 
-const SearchDropDown: FC<Props> = ({ dropDVis, setDropDVis }) => {
+const SearchDropDown: FC<Props> = ({
+  dropDVis,
+  setDropDVis,
+  isSpotifySearched,
+  setIsSpotifySearched,
+  setSearchedUpMusic,
+  searchText,
+  setSearchText,
+}) => {
   const [isSearchVis, setIsSearchVis] = useState(false);
   const [typeOfSearch, setTypeOfSearch] = useState("");
   const [isPressedIn1, setIsPressedIn1] = useState(false);
@@ -48,6 +61,12 @@ const SearchDropDown: FC<Props> = ({ dropDVis, setDropDVis }) => {
       </View>
       {isSearchVis && (
         <MusicTypeSearch
+          searchText={searchText}
+          setSearchText={setSearchText}
+          setSearchedUpMusic={setSearchedUpMusic}
+          setDropDVis={setDropDVis}
+          isSpotifySearched={isSpotifySearched}
+          setIsSpotifySearched={setIsSpotifySearched}
           setIsSearchVis={setIsSearchVis}
           isSearchVis={isSearchVis}
           typeOfSearch={typeOfSearch}

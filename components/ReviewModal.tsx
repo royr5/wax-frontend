@@ -77,7 +77,7 @@ const ReviewModal = (props: Iprops) => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View className="w-[90%] mx-[5%] h-[60%] bg-[#d8bbff] absolute inset-x-0 bottom-0 rounded-t-xl p-2 shadow-2xl">
+        <View className="w-[90%] mx-[5%] h-[60%] bg-[#d8bbff] absolute inset-x-0 bottom-0 rounded-t-xl p-2 ">
           <View>
             <Pressable
               className="justify-self-end ml-[94%]"

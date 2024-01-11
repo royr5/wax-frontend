@@ -2,27 +2,42 @@ import { Alert, Pressable, Text, TextInput, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { FC, useState } from "react";
 import { getSpotifyMusic } from "../utils/api";
+import { getSearchedMusic } from "../utils/spotify";
 
 interface Props {
   isSearchVis: boolean;
   setIsSearchVis: Function;
   typeOfSearch: string;
+  isSpotifySearched: boolean;
+  setIsSpotifySearched: Function;
+  setDropDVis: Function;
+  setSearchedUpMusic: Function;
+  searchText: string;
+  setSearchText: Function;
 }
 
 const MusicTypeSearch: FC<Props> = ({
   setIsSearchVis,
   isSearchVis,
   typeOfSearch,
+  isSpotifySearched,
+  setIsSpotifySearched,
+  setDropDVis,
+  setSearchedUpMusic,
+  searchText,
+  setSearchText,
 }) => {
-  const [searchText, setSearchText] = useState("");
-
   const handleSearchSubmit = async () => {
     if (searchText) {
       try {
         const spotifyMusic = await getSpotifyMusic(typeOfSearch, searchText);
-        console.log("🚀 ~ handleSearchSubmit ~ spotifyMusic:", spotifyMusic);
+        setIsSpotifySearched(!isSpotifySearched);
+        setDropDVis(false);
+        setSearchedUpMusic(spotifyMusic);
       } catch (err) {
         console.log("🚀 ~ handleSearchSubmit ~ err:", err);
+      }finally{
+
       }
     } else {
       Alert.alert("Incomplete Search", "Please add in text before searching", [
@@ -30,6 +45,7 @@ const MusicTypeSearch: FC<Props> = ({
       ]);
     }
   };
+
 
   return (
     <Pressable
@@ -41,9 +57,9 @@ const MusicTypeSearch: FC<Props> = ({
         <TextInput
           className="border-2 m-5 p-3 focus:border-green-600 rounded w-[75%]"
           placeholder={typeOfSearch}
-          placeholderTextColor="gray"
+          placeholderTextColor="#0008"
           value={searchText}
-          onChangeText={setSearchText}
+          onChangeText={(e) => setSearchText(e)}
         />
         <Pressable
           className="bg-black border-2 border-black p-3 rounded"

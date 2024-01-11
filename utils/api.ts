@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { PostReview } from "../types/front-end";
+import { getSearchedMusic } from "./spotify";
 
 const api = axios.create({
   baseURL: "https://0okk8avr80.execute-api.eu-west-2.amazonaws.com/prod/api",
@@ -45,28 +46,18 @@ export const postReview = async (music_id: string, review: PostReview) => {
   }
 };
 
-
 export const getSpotifyMusic = async (type: string, q: string) => {
   try {
-    const response: AxiosResponse = await api.get("/search", {
-      params: { q, type },
+    const matchedMusic = await getSearchedMusic(type, q);
+
+    const response: AxiosResponse = await api.post("/search", {
+      matchedMusic,
     });
-    return response;
+    return response.data.music;
   } catch (err) {
     console.log("🚀 ~ getSpotifyMusic ~ err:", err);
   }
 };
-
-// export const getSpotifyMusic = async () => {
-//   try {
-//     const response: AxiosResponse = await api.get(
-//       "/search?q=take+care&type=album"
-//     );
-//     console.log("🚀 ~ getSpotifyMusic ~ response:", response);
-//   } catch (err) {
-//     console.log("🚀 ~ file: api.ts:11 ~ getMusic ~ err:", err);
-//   }
-// };
 
 export const deleteReview = async (review_id: number) => {
   try {
@@ -76,4 +67,3 @@ export const deleteReview = async (review_id: number) => {
     console.log("🚀 ~ file: api.ts:51 ~ deleteReview ~ err:", err);
   }
 };
-
