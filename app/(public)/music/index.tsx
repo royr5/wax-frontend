@@ -44,8 +44,8 @@ const Albums = () => {
             onPressIn={() => {
               setButtonColor("bg-green-900");
               setDropDVis(!dropDVis);
-              setIsSpotifySearched(false)
-              setSearchText('')
+              setIsSpotifySearched(false);
+              setSearchText("");
             }}
             onPressOut={() => {
               setButtonColor("bg-[#15BA46]");
@@ -76,10 +76,13 @@ const Albums = () => {
           isSpotifySearched={isSpotifySearched}
         />
       )}
-      {isSpotifySearched &&
-      <SearchFilterBar searchText={searchText} setIsSpotifySearched={setIsSpotifySearched}/>
-      }
-      {isSpotifySearched ? (
+      {isSpotifySearched && (
+        <SearchFilterBar
+          searchText={searchText}
+          setIsSpotifySearched={setIsSpotifySearched}
+        />
+      )}
+      {isSpotifySearched && Array.isArray(searchedUpMusic) ? (
         <ScrollView>
           <View className="flex flex-row flex-wrap justify-betweenbg-pink-50 mb-20 mt-5">
             {searchedUpMusic.map((track) => (
@@ -96,7 +99,9 @@ const Albums = () => {
                     source={{ uri: track.album_img }}
                     className="w-40 h-40 drop-shadow-xl  rounded-lg"
                   />
-                  <Text className="text-center py-1 mt-2">{track.artist_names}</Text>
+                  <Text className="text-center py-1 mt-2">
+                    {track.artist_names}
+                  </Text>
                   <Text className="text-center">{track.name}</Text>
                 </View>
               </Pressable>
