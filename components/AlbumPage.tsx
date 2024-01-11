@@ -10,7 +10,9 @@ const AlbumPage = () => {
   const { music_id } = useGlobalSearchParams();
   const [musicContent, setMusicContent] = useState<Music>();
   const [ratingColor, setRatingColor] = useState("text-green-800");
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [sound, setSound] = useState<Audio.Sound | undefined>();
+
 
   useEffect(() => {
     const doThis = async () => {
@@ -27,32 +29,30 @@ const AlbumPage = () => {
     doThis();
   }, []);
 
+  const handlePlay = async () => {
 
+    await playPreview(!isPlaying);
+  };
 
-  const handlePlay = ()=>{
-    setIsPlaying((current)=>{
-      return !current
-    })
-
-   playPreview(isPlaying)
-  }
-
-  const playPreview = async (bool:boolean) => {
-
-    const sound = new Audio.Sound();
+  const playPreview = async (bool: boolean) => {
     if (typeof musicContent?.preview === "string" && bool) {
 
-      await sound.loadAsync(
+      const { sound } = await Audio.Sound.createAsync(
         {
           uri: musicContent.preview,
         },
         { shouldPlay: true }
       );
+      setSound(sound);
 
       await sound.playAsync();
-      
+    } else if (typeof musicContent?.preview === "string" && !bool && sound) {
+
+      await sound.unloadAsync();
     }
-    else {await sound.unloadAsync()}
+    setIsPlaying((current) => {
+      return !current;
+    });
   };
 
   return (
@@ -80,7 +80,8 @@ const AlbumPage = () => {
       />
       {musicContent?.preview && (
         <Pressable onPress={handlePlay}>
-          <Ionicons name="play" size={30} color={"black"} />
+          {!isPlaying && <Ionicons name='play' size={30} color={"black"} />}
+          {isPlaying && <Ionicons name='pause' size={30} color={"black"} />}
         </Pressable>
       )}
       {!musicContent?.avg_rating && (
