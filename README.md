@@ -52,7 +52,7 @@ The backend code for this project can be found in the [gatefold-api repository](
 - Typescript
 - Nativewind for styling
 - Axios for API calls
-- GitHub Actions for CI/CD
+
 ## Authors
 
 - [Jordan Watson](https://www.linkedin.com/in/jordan-watson-13884aba/)
