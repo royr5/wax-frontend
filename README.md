@@ -14,13 +14,13 @@ Welcome to Wax, a social media platform for music enthusiasts! This React Native
 Clone the project
 
 ```bash
-  git clone https://github.com/royr5/gatefold-frontend.git
+  git clone https://github.com/royr5/wax-frontend.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd gatefold-frontend
+  cd wax-frontend
 ```
 
 Install dependencies
@@ -37,7 +37,7 @@ Run the app
 
 ## Backend Repository
 
-The backend code for this project can be found in the [gatefold-api repository](https://github.com/royr5/gatefold-api).
+The backend code for this project can be found in the [wax-backend repository](https://github.com/royr5/wax-backend).
 
 ## Features
 
